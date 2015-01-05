@@ -1,0 +1,51 @@
+{
+  // Required
+  "manifest_version": 2,
+  "name": "SCPper",
+  "version": "0.1",
+
+  // Recommended
+  "description": "Handy little thing to improve your SCP browsing experience",
+  
+  // Optional
+  "author": "Alexander \"FiftyNine\" Krivopalov",
+  "background": {
+	"scripts": ["eventPage.js"],
+	"persistent": false
+  },
+  "content_scripts": [{
+        "matches": [
+			"http://*/*",
+			"https://*/*",		
+			"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
+			"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
+			"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*"
+		],
+        "js": [
+			// SCPper
+		    "scpUtils.js", "linkEnhancer.js",
+			"wikiUtils.js", "wikiPage.js", 
+			"wikiForum.js", "wikiMain.js",
+			"scpMain.js"
+		],
+		"run_at": "document_start"
+  }],    
+  "externally_connectable": {
+        "matches": [
+			"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
+			"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
+			"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*"
+		]
+  },
+  "web_accessible_resources": [
+	"scpEventOverrides.js"
+  ],
+  "permissions": [
+	// Chrome APIs
+    "storage",
+	// SCP wiki
+	"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
+	"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
+	"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*"
+  ]
+}

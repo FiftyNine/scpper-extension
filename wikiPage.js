@@ -28,7 +28,7 @@ function enumWikiPageChildNodes(node, linkedNumbers) {
 function enumPageTags(elem) {
 	var found = false;
 	if ((elem.nodeName.toUpperCase()=='A') && (new RegExp(WIKI_PAGE_TAG_HREF_TEMPLATE, "i").test(elem.getAttribute("href")))
-		&& (scpWebsite.permittedTags.indexOf(elem.textContent.toUpperCase())>=0))
+		&& (scpWebsite.permittedTags.indexOf(elem.textContent)>=0))
 			return true;
 	for (var i=0; (i<elem.children.length) && !found; i++)
 		found=found||enumPageTags(elem.children[i]);
@@ -48,6 +48,10 @@ function processWikiPage() {
 	// Don't process pages without specific tags
 	if (scpWebsite.checkTags && !checkPageTags())
 		return;
+	// Don't process main list pages
+	for (var i=0; i<scpWebsite.mainListPages.length; i++)
+		if (location.pathname == scpWebsite.mainListPages[i])
+			return;
 	var titleRegEx = new RegExp(WIKI_PAGE_TITLE_TEMPLATE, "igm");			
 	// var title = "";
 	var titleElement = document.getElementById(WIKI_PAGE_TITLE_ELEMENT_ID);		

@@ -1,13 +1,8 @@
 {
-  // Required
   "manifest_version": 2,
   "name": "SCPper",
   "version": "0.1",
-
-  // Recommended
   "description": "Handy little thing to improve your SCP browsing experience",
-  
-  // Optional
   "author": "Alexander \"FiftyNine\" Krivopalov",
   "background": {
 	"scripts": ["defaultSettings.js", "eventPage.js"],

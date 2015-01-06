@@ -23,9 +23,15 @@
         "matches": [
 			"http://*/*",
 			"https://*/*",		
-			"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
-			"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
-			"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*"
+			"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*", // Main
+			"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",   // Russian
+			"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*",	// Korean			
+			"*://www.scp-wiki-cn.org/*",							// Chinese
+			"*://fondationscp.wikidot.com/*",						// French
+			"*://scp-wiki.pl/*", "*://scp-pl.wikidot.com/*",		// Polish
+			"*://lafundacionscp.wikidot.com/*",						// Spanish
+			"*://scp-th.wikidot.com/*",								// Thai
+			"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*"		// Japanese
 		],
         "js": [
 			// SCPper
@@ -38,9 +44,15 @@
   }],    
   "externally_connectable": {
         "matches": [
-			"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
-			"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
-			"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*"
+			"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*", // Main
+			"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",	// Russian
+			"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*",	// Korean			
+			"*://www.scp-wiki-cn.org/*",							// Chinese
+			"*://fondationscp.wikidot.com/*",						// French
+			"*://scp-wiki.pl/*", "*://scp-pl.wikidot.com/*",		// Polish
+			"*://lafundacionscp.wikidot.com/*",						// Spanish			
+			"*://scp-th.wikidot.com/*",								// Thai		
+			"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*"		// Japanese
 		]
   },
   "web_accessible_resources": [
@@ -50,8 +62,14 @@
 	// Chrome APIs
     "storage",
 	// SCP wiki
-	"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
-	"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
-	"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*"
+	"*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",	// Main
+	"*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",	// Russian
+	"*://ko.scp-wiki.net/*", "*://scp-kr.wikidot.com/*",	// Korean
+	"*://www.scp-wiki-cn.org/*",							// Chinese
+	"*://fondationscp.wikidot.com/*",						// French	
+	"*://scp-wiki.pl/*", "*://scp-pl.wikidot.com/*",		// Polish
+	"*://lafundacionscp.wikidot.com/*",						// Spanish					
+	"*://scp-th.wikidot.com/*",								// Thai	
+	"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*"		// Japanese
   ]
 }

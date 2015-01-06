@@ -5,7 +5,7 @@ var SCP_WEBSITES = [
 	primaryLink: "http://www.scp-wiki.net",
 	linkTemplates: ["(www\\.)?scp-wiki\\.net", "(www\\.)?scp-wiki\\.wikidot\\.com"],
 	checkTags: true,
-	permittedTags: ["SCP", "TALE", "SUPPLEMENT"],
+	permittedTags: ["scp", "tale", "supplement"],
 	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
 	mainListPages: ["/scp-series", "/scp-series-2", "/scp-series-3"],
 	membersPages: "/members-pages"
@@ -22,13 +22,67 @@ var SCP_WEBSITES = [
 	{name: "Korean",
 	primaryLink: "http://ko.scp-wiki.net/",
 	linkTemplates: ["ko\\.scp-wiki\\.net", "(www\\.)?scp-kr\\.wikidot\\.com"],
-	checkTags: true,
+	checkTags: false,
 	permittedTags: ["SCP", "이야기", "보충"],
 	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
 	mainListPages: ["/scp-series", "/scp-series-2", "/scp-series-3"],
 	membersPages: "/members-pages-ko"
-	}
-	];
+	},	
+	{name: "Chinese",
+	primaryLink: "http://www.scp-wiki-cn.org/",
+	linkTemplates: ["(www\\.)?scp-wiki-cn\\.org"],
+	checkTags: false,
+	permittedTags: [],
+	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+	mainListPages: ["/scp-seriess", "/scp-series-2", "/scp-series-3"],
+	membersPages: null
+	},	
+	{name: "French",
+	primaryLink: "http://fondationscp.wikidot.com/",
+	linkTemplates: ["(www\\.)?fondationscp\\.wikidot\\.com"],
+	checkTags: false,
+	permittedTags: ["annexe", "scp", "conte"],
+	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+	mainListPages: ["/001-999", "/1000-1999", "/2000-2999"],
+	membersPages: null
+	},	
+	{name: "Polish",
+	primaryLink: "http://scp-wiki.pl/",
+	linkTemplates: ["(www\\.)?scp-wiki\\.pl", "(www\\.)?scp-pl\\.wikidot\\.com"],
+	checkTags: false,
+	permittedTags: ["opowieść", "scp"],
+	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+	mainListPages: ["/lista-eng", "/lista-eng-2", "/lista-eng-3"],
+	membersPages: null
+	},
+	{name: "Spanish",
+	primaryLink: "http://lafundacionscp.wikidot.com/",
+	linkTemplates: ["(www\\.)?lafundacionscp\\.wikidot\\.com"],
+	checkTags: false,
+	permittedTags: [],
+	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+	mainListPages: ["/serie-scp-i", "/serie-scp-ii", "/serie-scp-iii"],
+	membersPages: null
+	},
+	{name: "Thai",
+	primaryLink: "http://scp-th.wikidot.com/",
+	linkTemplates: ["(www\\.)?scp-th\\.wikidot\\.com"],
+	checkTags: false,
+	permittedTags: [],
+	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+	mainListPages: ["/scp-series-1", "/scp-series-2", "/scp-series-3"],
+	membersPages: null
+	},
+	{name: "Japanese",
+	primaryLink: "http://ja.scp-wiki.net/",
+	linkTemplates: ["ja\\.scp-wiki\\.net", "(www\\.)?scp-jp\\.wikidot\\.com"],
+	checkTags: false,
+	permittedTags: [],
+	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+	mainListPages: ["/scp-series", "/scp-series-2", "/scp-series-3"],
+	membersPages: "/members-pages-jp"
+	}				
+];
 
 var MAX_SCP_NUMBER = 3000;
 var SCP_TEMPLATE_LAX = "(SCP-)?\\d{3,4}";
@@ -124,7 +178,7 @@ function extractScpNames(doc) {
 			}
 			var scpName = "";
 			if (text) {
-				scpName = /[^\s-].*/.exec(text);
+				scpName = /[^\s-—].*/.exec(text);
 				if (scpName)
 					list.push({number: scpNumber[0], name: scpName[0]});
 			}

@@ -78,6 +78,17 @@ function setForumPostAnchor() {
 				firstPost.id = postId;
 			}
 		}
+	} else {
+	    // Prevent scrolling by storing the page's current scroll offset
+        var scrollV = document.body.scrollTop;
+        var scrollH = document.body.scrollLeft;
+		try {
+			location.hash = '';
+		} finally {		
+			// Restore the scroll offset, should be flicker free
+			document.body.scrollTop = scrollV;
+			document.body.scrollLeft = scrollH;
+		}
 	}
 }
 
@@ -85,15 +96,17 @@ function setForumPostAnchor() {
 function gotoAnchoredForumPage() {
 	if (!checkIfForum() || !scpperSettings.overrideForum)
 		return;
-	if (/^#?post-\d+$/.test(location.hash)) {
-		var postId = location.hash.replace("#", "");
+	var postId = location.hash.replace("#", "");
+	if (/^#?post-\d+$/.test(postId)) {		
 		var post = document.getElementById(postId);
 		if (!post) {
 			injectScript("scpperForumLoadPostOverride("+postId.replace("post-", "")+");");
 		}
 	}
-	else if (location.hash=="") {
-		injectScript("scpperForumChangePageHandler(1);");
+	else {
+		var currentPage = document.querySelector("#thread-container-posts .pager span.current");
+		if (currentPage && (currentPage.innerText != "1"))
+			injectScript("scpperForumChangePageHandler(1);");
 	}
 }
 

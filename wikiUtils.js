@@ -8,7 +8,7 @@ function scpAddLinkedNumber(node, linkedNumbers) {
 		if (ref != null) {
 			var num = /\d{3,4}/.exec(ref[0]);
 			if (num != null)
-				linkedNumbers.push(num[0]);
+				linkedNumbers[num[0]]=1;
 		}
 	}
 }	
@@ -31,7 +31,7 @@ function scpLinkifyTextNode(node, linkedNumbers) {
 	while ((scpMatch = scpRegEx.exec(oldText)) != null) {
 		found = true;		
 		var scpNumber = /\d{3,4}/.exec(scpMatch[0]);
-		if ((scpNumber != null) && (Number(scpNumber[0]) < MAX_SCP_NUMBER) && (linkedNumbers.indexOf(scpNumber[0])<0) 
+		if ((scpNumber != null) && (Number(scpNumber[0]) < MAX_SCP_NUMBER) && (!linkedNumbers[scpNumber[0]])
 			/*&& (Number(scpNumber[0]).toString()==scpNumber[0])*/) {										
 				trimmedScpRegEx.lastIndex = scpRegEx.lastIndex-scpMatch[0].length; 
 				//console.log(trimmedScpRegEx.lastIndex+" "+scpMatch[0].length+" \""+scpMatch[0]+"\" \""+oldText+"\"");
@@ -55,7 +55,8 @@ function scpLinkifyTextNode(node, linkedNumbers) {
 				scpLink.appendChild(scpLinkText);
 				//console.log(scpLink.getAttribute("href"));
 				parent.insertBefore(scpLink, node);
-				linkedNumbers.push(scpNumber[0]);
+				scpAddLinkedNumber(scpLink, linkedNumbers);
+				//linkedNumbers.push(scpNumber[0]);
 				prevPos = trimmedScpRegEx.lastIndex;
 			}
 	}

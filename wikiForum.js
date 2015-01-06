@@ -28,7 +28,7 @@ function scpEnumForumPostContentElements(elem, linkedNumbers){
 function scpForumProcessPosts(){
 	if (!scpperSettings.useLinkifier)
 		return;
-	var linkedNumbers = [];
+	var linkedNumbers = {};
 	if (scpperSettings.linkifierTemplate == "lax")
 		scpTemplate = SCP_TEMPLATE_LAX
 	else

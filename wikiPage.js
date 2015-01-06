@@ -44,14 +44,14 @@ function checkPageTags() {
 
 // Process a main site page (SCP, tale, etc...)
 function processWikiPage() {
-	var linkedNumbers=[];	
+	var linkedNumbers={};	
 	// Don't process pages without specific tags
 	if (scpWebsite.checkTags && !checkPageTags())
 		return;
 	// Don't process main list pages
-	for (var i=0; i<scpWebsite.mainListPages.length; i++)
+/*	for (var i=0; i<scpWebsite.mainListPages.length; i++)
 		if (location.pathname == scpWebsite.mainListPages[i])
-			return;
+			return;*/
 	var titleRegEx = new RegExp(WIKI_PAGE_TITLE_TEMPLATE, "igm");			
 	// var title = "";
 	var titleElement = document.getElementById(WIKI_PAGE_TITLE_ELEMENT_ID);		
@@ -60,7 +60,7 @@ function processWikiPage() {
 		var tmp = /\d{3,4}/.exec(titleElement.textContent);
 		if (tmp != null) {
 			pageScpNumber = tmp[0];
-			linkedNumbers.push(pageScpNumber);
+			linkedNumbers[pageScpNumber]=1;
 		}
 		// Add article name
 		if ((pageScpNumber != "") && (scpperSettings.addArticleName)) {			

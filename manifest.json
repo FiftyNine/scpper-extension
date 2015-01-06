@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.1.0.1",
+  "version": "0.1.0.2",
   "description": "Handy little thing to improve your SCP browsing experience",
   "icons": {
 	"128": "SCP-logo-128.png",

@@ -2,7 +2,7 @@
 This module contains functions that are used by SCPper Chrome extension to override default behaviour on SCP wiki and its regional branches
 */
 
-var SCPPER_EXTENSION_ID = "acijgmbbgbldddbdkkmmoogenkpkpmaa";
+var SCPPER_EXTENSION_ID = "cpebggobaenfndpoddkdindknnpbjdfc";
 
 // Default wrapper for overriden functions
 function scpperDefaultHandlerOverride(listener, setCallback, message, args) {	

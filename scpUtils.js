@@ -35,11 +35,15 @@ var SCP_TEMPLATE_LAX = "(SCP-)?\\d{3,4}";
 var SCP_TEMPLATE_STRICT = "SCP-\\d{3,4}";
 var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24*7; // Milliseconds in a week
 
+var DEBUG = false;
+
 // Format of last refresh time in storage of SCP names for a site: "SITENAMELastRefreshTime"
 // Format of SCP name in storage: "SITENAMESCP###NAME"
 
 // Current scp website	
 var scpWebsite;		
+// Settings
+var scpperSettings;
 	
 function makeXMLHttpRequest(sender, url, callback) {
 	var request = new XMLHttpRequest();
@@ -49,6 +53,16 @@ function makeXMLHttpRequest(sender, url, callback) {
 	}
 	request.open("GET", url, true);
 	request.send();
+}
+
+// Get extension settings
+function initScpperSettings() {
+	chrome.storage.sync.get("scpperSettings", function (value) {
+		if (!chrome.runtime.lastError)
+			scpperSettings = value["scpperSettings"]
+		else
+			console.log("Unexpected error while retrieving SCPper settings: "+chrome.runtime.lastError.message);
+	});
 }
 
 // Inject a script file into document

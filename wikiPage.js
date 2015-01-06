@@ -9,6 +9,8 @@ var pageScpNumber="";
 
 // Recursively process DOM nodes of a main wiki page and linkify text nodes
 function enumWikiPageChildNodes(node, linkedNumbers) {	
+	if (!scpperSettings.useLinkifier)
+		return;
 	// Linkify lowest level text nodes
 	if ((node.childNodes.length == 0) && (node.nodeType == Node.TEXT_NODE))
 		scpLinkifyTextNode(node, linkedNumbers);
@@ -57,7 +59,7 @@ function processWikiPage() {
 			linkedNumbers.push(pageScpNumber);
 		}
 		// Add article name
-		if (pageScpNumber != "") {			
+		if ((pageScpNumber != "") && (scpperSettings.addArticleName)) {			
 			getScpName(scpWebsite, pageScpNumber, function(name) {
 				if (name)
 					titleElement.textContent = titleElement.textContent.trim() + " - " + name;
@@ -65,14 +67,16 @@ function processWikiPage() {
 		}
 	} 
 	// Only use strict template for SCP articles, use lax template for tales, supplements and forum
-	if (pageScpNumber == "")
-		scpTemplate = SCP_TEMPLATE_LAX;
-	else
-		scpTemplate = SCP_TEMPLATE_STRICT;	
-	var contentElement = document.getElementById(WIKI_PAGE_CONTENT_ELEMENT_ID);
-	if (contentElement == null) {
-		console.log("Error: PageContent not found");
-		return;
-	}					
-	enumWikiPageChildNodes(contentElement, linkedNumbers);
+	if (scpperSettings.useLinkifier) {
+		if ((pageScpNumber == "") && (scpperSettings.linkifierTemplate == "lax"))
+			scpTemplate = SCP_TEMPLATE_LAX;
+		else
+			scpTemplate = SCP_TEMPLATE_STRICT;	
+		var contentElement = document.getElementById(WIKI_PAGE_CONTENT_ELEMENT_ID);
+		if (contentElement == null) {
+			console.log("Error: PageContent not found");
+			return;
+		}					
+		enumWikiPageChildNodes(contentElement, linkedNumbers);
+	}	
 }

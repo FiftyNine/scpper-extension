@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>SCPper settings</title>
+    <style>
+      body {
+      margin: 0px;
+      background-repeat: no-repeat;
+      background-attachment: fixed;		
+      font-family: verdana,arial;
+      font-size: 0.9em;
+      }
+      h1,h2 {
+      margin: 0px;
+      padding-top: 10px;					
+      padding-left: 10px;
+      color: rgb(153, 0, 17);
+      font-size: 150%;
+      font-weight: normal;		
+      }
+	  h1 {
+	    font-size: 200%;
+		vertical-align: middle;
+	  }
+      h2.first {
+      padding-top: 20px;			
+      }
+      div.settings {
+      background: linear-gradient(#eee, white);
+      }
+      p {		
+      margin: 5px;
+      }
+	  p#status {
+	    text-indent: 10px;
+		font-style: italic;
+	  }
+	  p.footnote {
+		font-size: 0.75em;
+	  }
+    </style>
+	<script src="defaultSettings.js"></script>
+    <script src="options.js"></script>
+  </head>
+  <body>
+    <div class="settings">
+	  <h1>
+	    <table>
+		  <tbody>
+		    <tr>
+			  <td>
+	            <img src="SCP-Logo-signature.png"/> 
+			  </td>
+			  <td/>
+			  <td>
+		        SCPper extension settings
+			  </td>
+			</tr>
+		  </tbody>
+		</table>
+	  </h1>
+      <h2 class="first">Wiki enhancement settings</h2>
+      <p>
+        <label>
+        <input type="checkbox" id="use-linkifier">
+        Convert plain text to SCP links:
+        </label>
+        <select id="linkifier-template">
+          <option value="strict">Strict ("SCP-XXX[X]")</option>
+          <option value="lax">Lax ("SCP-XXX[X]" and "XXX[X]")</option>
+        </select>
+      </p>
+      <p>
+        <label>
+        <input type="checkbox" id="author-page-link">
+        Add author page link to user info dialogue
+        </label>
+      </p>
+      <p>
+        <label>
+        <input type="checkbox" id="article-name-title">
+        Add name of article from main list to title
+        </label>
+      </p>
+      <p>
+        <label>
+        <input type="checkbox" id="override-forum">
+        Add forum pages to browser history
+        </label>
+      </p>
+      <h2>Global settings</h2>
+      <p>
+        <label>
+        <input type="checkbox" id="link-tooltips">
+        Add tooltips to SCP links
+        </label>
+      </p>
+	  <p id="status">
+	  </p>
+	  <hr>
+	  <p class="footnote">
+	  Source code and all resources of this extension are distributed under <a href="https://creativecommons.org/licenses/by-sa/3.0/au/legalcode">Creative Commons Attribution-ShareAlike 3.0 license</a>.
+	  <br>
+	  Idea of SCP objects, SCP Foundation, SCP Foundation logo, "Secure. Contain. Protect" motto were created by <a href="http://www.scp-wiki.net/">SCP creative community</a> and are available under the same license.
+	  </p>
+    </div>
+  </body>
+</html>

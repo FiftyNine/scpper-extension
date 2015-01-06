@@ -17,31 +17,33 @@ function addLinkPopupDialog(link, website, scpNumber) {
 		link.parentNode.appendChild(popupLink);
 }
 
-// Enhance SCP links on a page by adding tooltips and popups
+// Enhance SCP links on a page by adding tooltips 
 function enhanceLinks() {
-  for (var i=0; i<document.links.length; i++) {
-	var link = document.links[i];
-	if (link.nodeName.toUpperCase() == 'A') {
-		var isScp = false;		
-		var scpNumber;
-		var scpSite = identifyScpWebsite(link.href);
-		if (scpSite)
-		{
-			for (var k=0; k<scpSite.linkTemplates.length; k++)
+	if (!scpperSettings.linkTooltips)
+		return;
+	for (var i=0; i<document.links.length; i++) {
+		var link = document.links[i];
+		if (link.nodeName.toUpperCase() == 'A') {
+			var isScp = false;		
+			var scpNumber;
+			var scpSite = identifyScpWebsite(link.href);
+			if (scpSite)
 			{
-				var linkRegEx = new RegExp(scpSite.linkTemplates[k]+"/"+SCP_TEMPLATE_STRICT+"\\b", "ig");
-				if (linkRegEx.test(link.href)) {
-					isScp = true;
-					scpNumber = /\d{3,4}\b/.exec(link.href);
-					break;
+				for (var k=0; k<scpSite.linkTemplates.length; k++)
+				{
+					var linkRegEx = new RegExp(scpSite.linkTemplates[k]+"/"+SCP_TEMPLATE_STRICT+"\\b", "ig");
+					if (linkRegEx.test(link.href)) {
+						isScp = true;
+						scpNumber = /\d{3,4}\b/.exec(link.href);
+						break;
+					}
 				}
-			}
-			if (isScp && scpNumber){
-				if (!link.title)
-					setLinkTitle(link, scpSite, scpNumber[0]);
-//				addLinkPopupDialog(link, scpSite, scpNumber[0]);
+				if (isScp && scpNumber){
+					if (!link.title)
+						setLinkTitle(link, scpSite, scpNumber[0]);
+	//				addLinkPopupDialog(link, scpSite, scpNumber[0]);
+				}
 			}
 		}
 	}
-  }
 }

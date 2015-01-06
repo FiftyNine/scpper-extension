@@ -1,3 +1,21 @@
+// Setup default settings when first installed
+chrome.runtime.onInstalled.addListener(function (details) {
+	chrome.storage.sync.get("scpperSettings", function(value) {
+		var newSettings = value;
+		if (!newSettings)
+			newSettings = {};
+		var keys = Object.keys(scpperDefaultSettings);
+		var needSave = false;
+		for (var i=0; i<keys.length; i++)
+			if (!newSettings.hasOwnProperty(keys[i])) {
+				needSave = true;
+				newSettings[keys[i]] = scpperDefaultSettings[keys[i]];
+			}
+		if (needSave)
+			chrome.storage.sync.set({"scpperSettings": newSettings});
+	});
+});
+
 // Listen to messages from forum page
 chrome.runtime.onMessageExternal.addListener(
   function(message, sender, sendResponse) {

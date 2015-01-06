@@ -15,6 +15,8 @@ function scpAddLinkedNumber(node, linkedNumbers) {
 
 // Process a text node and convert matching text into SCP links
 function scpLinkifyTextNode(node, linkedNumbers) {
+	if (!scpperSettings.useLinkifier)
+		return;
 	var scpSearchTemplate = "([\\W_]|\\b)"+scpTemplate+"([\\W_]|\\b)";
 	var parent = node.parentElement;	
 	if (!node.nodeValue || (parent == null))
@@ -96,6 +98,8 @@ function getUserMemberPageLink(userName, callback) {
 
 // Process user info dialog and add link to the correspondent member page
 function processUserInfoDialog(userName) {
+	if (!scpperSettings.addAuthorPage)
+		return;
 	getUserMemberPageLink(userName, function(memberPage) {
 		var dialogElem = document.getElementById("odialog-container");	
 		if (!dialogElem || (dialogElem.childNodes.length == 0) || !memberPage)
@@ -174,6 +178,8 @@ function overrideWikiBottomButtons() {
 
 // Override onlick handlers for all userInfo links in the current document
 function overrideUserInfoLinks() {
+	if (!scpperSettings.addAuthorPage)
+		return;
 	var links = document.querySelectorAll("span.printuser a");
 	for (var i=0; i<links.length; i++) {
 		var onclickText = links[i].getAttribute("onclick");

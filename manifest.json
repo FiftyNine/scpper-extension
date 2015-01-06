@@ -10,8 +10,14 @@
   // Optional
   "author": "Alexander \"FiftyNine\" Krivopalov",
   "background": {
-	"scripts": ["eventPage.js"],
+	"scripts": ["defaultSettings.js", "eventPage.js"],
 	"persistent": false
+  },
+  "options_page": "options.html",
+  "icons": {
+	"128": "SCP-logo-128.png",
+	"48": "SCP-logo-48.png",
+	"16": "SCP-logo-16.png"
   },
   "content_scripts": [{
         "matches": [

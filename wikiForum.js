@@ -26,8 +26,13 @@ function scpEnumForumPostContentElements(elem, linkedNumbers){
 
 // Iterate through all posts on a page and linkify them
 function scpForumProcessPosts(){
+	if (!scpperSettings.useLinkifier)
+		return;
 	var linkedNumbers = [];
-	scpTemplate = SCP_TEMPLATE_LAX;
+	if (scpperSettings.linkifierTemplate == "lax")
+		scpTemplate = SCP_TEMPLATE_LAX
+	else
+		scpTemplate = SCP_TEMPLATE_STRICT;
 	var postsContainer = document.getElementById(FORUM_THREAD_CONTAINER_POSTS_ID);
 	if (postsContainer!=null)
 		scpEnumForumPostContentElements(postsContainer, linkedNumbers);
@@ -58,6 +63,8 @@ function scpForumOverridePageHandlers(){
 
 //Runs after coming to a new page, set anchor by the first post of the page
 function setForumPostAnchor() {
+	if (!scpperSettings.overrideForum)
+		return;
 	var currentPage = document.querySelector("#thread-container-posts .pager span.current");
 	if (currentPage && (currentPage.innerText != "1")) {	
 		var firstPost = document.querySelector("#thread-container-posts .post[id^=post-]");
@@ -76,7 +83,7 @@ function setForumPostAnchor() {
 
 // After anchor (hash part of location) changed loads specified post
 function gotoAnchoredForumPage() {
-	if (!checkIfForum())
+	if (!checkIfForum() || !scpperSettings.overrideForum)
 		return;
 	if (/^#?post-\d+$/.test(location.hash)) {
 		var postId = location.hash.replace("#", "");
@@ -119,7 +126,8 @@ function intervalProcessForumPage() {
 // Process a forum page upon loading (runs only once)
 function processForumPage() {    	
 	intervalProcessForumPage();
-	window.addEventListener("hashchange", gotoAnchoredForumPage);
+	if (scpperSettings.overrideForum)
+		window.addEventListener("hashchange", gotoAnchoredForumPage);
 }
 
 // Listen to messages from forum page

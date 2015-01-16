@@ -29,8 +29,7 @@ function scpLinkifyTextNode(node, linkedNumbers, template) {
 	var parent = node.parentElement;	
 	if (!node.nodeValue || (parent == null))
 		return;
-	var scpRegEx = new RegExp(scpSearchTemplate, "igm");	
-	var scpNumberRegEx = new RegExp(template.numberRegEx, "igm");
+	var scpRegEx = new RegExp(scpSearchTemplate, "igm");		
 	var oldText = node.nodeValue;
 	var found = false;
 	var scpMatch, trimmedMatch;
@@ -38,6 +37,7 @@ function scpLinkifyTextNode(node, linkedNumbers, template) {
 	var tmp = 0;			
 	while ((scpMatch = scpRegEx.exec(oldText)) != null) {
 		found = true;		
+		var scpNumberRegEx = new RegExp(template.numberRegEx, "igm");
 		var scpNumber = scpNumberRegEx.exec(scpMatch[0]);
 		// General check
 		if ((scpNumber != null) && (!linkedNumbers[scpNumber[0].toUpperCase()])) {

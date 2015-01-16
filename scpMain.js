@@ -7,11 +7,17 @@ function runSCPper() {
 	var interval = setInterval(function() {	
 		if (scpperSettings) {
 			scpWebsite = identifyScpWebsite(document.URL);
-			if (scpWebsite!=null) {
-				if (processWiki())
-					DEBUG && console.log(document.URL+" linkified");
+			if (scpWebsite!=null) {				
+				DEBUG && console.time("Linkifier");
+				if (processWiki())					
+					DEBUG && console.timeEnd("Linkifier");
 			}			
-			enhanceLinks();
+			DEBUG && console.time("LinkEnhancer");
+			if (DEBUG)
+				enhanceLinks()
+			else
+				setTimeout(enhanceLinks, 0);
+			DEBUG && console.timeEnd("LinkEnhancer");
 			clearInterval(interval);
 		} else {
 			// give up after 3 seconds of trying to retrieve settings

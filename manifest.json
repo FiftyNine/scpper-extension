@@ -10,7 +10,7 @@
   },
   "author": "Alexander \"FiftyNine\" Krivopalov",
   "background": {
-	"scripts": ["defaultSettings.js", "eventPage.js"],
+	"scripts": ["constants.js", "eventPage.js"],
 	"persistent": false
   },
   "options_page": "options.html",
@@ -28,7 +28,7 @@
 			"*://scp-th.wikidot.com/*",
 			"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*"
 		],
-        "js": [
+        "js": ["constants.js",
 		    "scpUtils.js", "linkEnhancer.js",
 			"wikiUtils.js", "wikiPage.js", 
 			"wikiForum.js", "wikiMain.js",

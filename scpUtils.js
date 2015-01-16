@@ -1,94 +1,3 @@
-// List of all supported SCP websites and their properties
-// Names must be unique!
-var SCP_WEBSITES = [
-	{name: "English", 
-	primaryLink: "http://www.scp-wiki.net",
-	linkTemplates: ["(www\\.)?scp-wiki\\.net", "(www\\.)?scp-wiki\\.wikidot\\.com"],
-	checkTags: true,
-	permittedTags: ["scp", "tale", "supplement"],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/scp-series", "/scp-series-2", "/scp-series-3"],
-	membersPages: "/members-pages"
-	},
-	{name: "Russian",
-	primaryLink: "http://scpfoundation.ru",
-	linkTemplates: ["(www\\.)?scpfoundation\\.ru", "(www\\.)?scp-ru\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: [],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK", "RIMG"],
-	mainListPages: ["/scp-list", "/scp-list-2", "/scp-list-3"],
-	membersPages: null
-	},
-	{name: "Korean",
-	primaryLink: "http://ko.scp-wiki.net/",
-	linkTemplates: ["ko\\.scp-wiki\\.net", "(www\\.)?scp-kr\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: ["SCP", "이야기", "보충"],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/scp-series", "/scp-series-2", "/scp-series-3"],
-	membersPages: "/members-pages-ko"
-	},	
-	{name: "Chinese",
-	primaryLink: "http://www.scp-wiki-cn.org/",
-	linkTemplates: ["(www\\.)?scp-wiki-cn\\.org"],
-	checkTags: false,
-	permittedTags: [],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/scp-seriess", "/scp-series-2", "/scp-series-3"],
-	membersPages: null
-	},	
-	{name: "French",
-	primaryLink: "http://fondationscp.wikidot.com/",
-	linkTemplates: ["(www\\.)?fondationscp\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: ["annexe", "scp", "conte"],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/001-999", "/1000-1999", "/2000-2999"],
-	membersPages: null
-	},	
-	{name: "Polish",
-	primaryLink: "http://scp-wiki.pl/",
-	linkTemplates: ["(www\\.)?scp-wiki\\.pl", "(www\\.)?scp-pl\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: ["opowieść", "scp"],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/lista-eng", "/lista-eng-2", "/lista-eng-3"],
-	membersPages: null
-	},
-	{name: "Spanish",
-	primaryLink: "http://lafundacionscp.wikidot.com/",
-	linkTemplates: ["(www\\.)?lafundacionscp\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: [],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/serie-scp-i", "/serie-scp-ii", "/serie-scp-iii"],
-	membersPages: null
-	},
-	{name: "Thai",
-	primaryLink: "http://scp-th.wikidot.com/",
-	linkTemplates: ["(www\\.)?scp-th\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: [],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/scp-series-1", "/scp-series-2", "/scp-series-3"],
-	membersPages: null
-	},
-	{name: "Japanese",
-	primaryLink: "http://ja.scp-wiki.net/",
-	linkTemplates: ["ja\\.scp-wiki\\.net", "(www\\.)?scp-jp\\.wikidot\\.com"],
-	checkTags: false,
-	permittedTags: [],
-	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-	mainListPages: ["/scp-series", "/scp-series-2", "/scp-series-3"],
-	membersPages: "/members-pages-jp"
-	}				
-];
-
-var MAX_SCP_NUMBER = 3000;
-var SCP_TEMPLATE_LAX = "(SCP-)?\\d{3,4}";
-var SCP_TEMPLATE_STRICT = "SCP-\\d{3,4}";
-var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24*7; // Milliseconds in a week
-
 var DEBUG = false;
 
 // Format of last refresh time in storage of SCP names for a site: "SITENAMELastRefreshTime"
@@ -163,13 +72,13 @@ function checkIfForum() {
 }
 
 // Extracts scp names from document and places them into array of pairs {number, name}
-function extractScpNames(doc) {
+function extractScpNames(doc, template) {
 	var list = [];
 	for (var i=0; i<doc.links.length; i++) {
 		var link = doc.links[i];
 		var href = link.attributes["href"].value;		
-		if ((link.nodeName.toUpperCase() == 'A')&&(new RegExp("/"+SCP_TEMPLATE_STRICT+"\\b", "i").test(href))) {
-			var scpNumber = /\d{3,4}$/.exec(href);
+		if ((link.nodeName.toUpperCase() == 'A')&&(new RegExp(template.urlTemplate.replace("@", template.numberRegEx)+"$", "i").test(href))) {
+			var scpNumber = new RegExp(template.numberRegEx+"$", "i").exec(href);
 			var text = "";
 			var textElem = link.nextSibling;
 			while (textElem && (text.search("\n")<0)) {
@@ -199,36 +108,44 @@ function fillScpNameCache(website, callback) {
 	}
 	index = cacheInProgress.push(website.name)-1;
 	waitingCallbacks.push({website: website.name, callbacks: [callback]});	
-	var pagesLeft = website.mainListPages.length;
-	var errors = false;
-	for (var i=0; i<website.mainListPages.length; i++) {
-	var url = website.primaryLink+website.mainListPages[i];
-	makeXMLHttpRequest(null, url, function(sender, response) {
-		var doc = document.implementation.createHTMLDocument("");
-		doc.write(response);
-		var list = extractScpNames(doc);
-		var storeObj = {};
-		for (var j=0; j<list.length; j++)
-			storeObj[website.name+"SCP"+list[j].number+"NAME"] = list[j].name;
-		chrome.storage.local.set(storeObj, function(){
-			if (chrome.runtime.lastError)
-				errors = true;
-			pagesLeft--;
-			if (pagesLeft == 0) {
-				if (!errors)
-				{
-					var dateObj = {};
-					dateObj[website.name+"LastRefreshTime"] = new Date().toString();
-					chrome.storage.local.set(dateObj);
-				}
-				for (var i=0; i<waitingCallbacks[index].callbacks.length; i++)
-					waitingCallbacks[index].callbacks[i]();
-				waitingCallbacks.splice(index, 1);
-				cacheInProgress.splice(index, 1);
+	var pages = [];
+	var templates = [];
+	for (i=0; i<website.articleTemplates.length; i++)
+		for (j=0; j<website.articleTemplates[i].listPages.length; j++)
+			if (pages.indexOf(website.articleTemplates[i].listPages[j] < 0)) {			
+				pages.push(website.articleTemplates[i].listPages[j]);			
+				templates.push(website.articleTemplates[i]);
 			}
+	var pagesLeft = pages.length;
+	var errors = false;
+	for (var i=0; i<pages.length; i++) {
+		var url = website.primaryLink+pages[i];
+		makeXMLHttpRequest(i, url, function(sender, response) {
+			var doc = document.implementation.createHTMLDocument("");
+			doc.write(response);
+			var list = extractScpNames(doc, templates[sender]);
+			var storeObj = {};
+			for (var j=0; j<list.length; j++)
+				storeObj[website.name+"SCP"+list[j].number+"NAME"] = list[j].name;
+			chrome.storage.local.set(storeObj, function(){
+				if (chrome.runtime.lastError)
+					errors = true;
+				pagesLeft--;
+				if (pagesLeft == 0) {
+					if (!errors)
+					{
+						var dateObj = {};
+						dateObj[website.name+"LastRefreshTime"] = new Date().toString();
+						chrome.storage.local.set(dateObj);
+					}
+					for (var i=0; i<waitingCallbacks[index].callbacks.length; i++)
+						waitingCallbacks[index].callbacks[i]();
+					waitingCallbacks.splice(index, 1);
+					cacheInProgress.splice(index, 1);
+				}
+			});
 		});
-	});
-  }  
+	}  
 }
 
 

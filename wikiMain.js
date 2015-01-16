@@ -1,14 +1,14 @@
 
 
 // Process loaded page
-function processWiki() {	
+function processWiki() {		
 	if (scpWebsite==null)
 		return false;
 	injectExtensionScript("scpEventOverrides.js");		
 	if (checkIfForum())
 		processForumPage();
 	else
-		processWikiPage();
+		processWikiPage();	
 	overrideUserInfoLinks();
 	overrideWikiBottomButtons();
 	return true;

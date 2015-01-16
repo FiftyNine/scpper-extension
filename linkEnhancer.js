@@ -26,19 +26,21 @@ function enhanceLinks() {
 		if (link.nodeName.toUpperCase() == 'A') {
 			var isScp = false;		
 			var scpNumber;
+			var scpTemplate;
 			var scpSite = identifyScpWebsite(link.href);
 			if (scpSite)
 			{
-				for (var k=0; k<scpSite.linkTemplates.length; k++)
-				{
-					var linkRegEx = new RegExp(scpSite.linkTemplates[k]+"/"+SCP_TEMPLATE_STRICT+"\\b", "ig");
-					if (linkRegEx.test(link.href)) {
-						isScp = true;
-						scpNumber = /\d{3,4}\b/.exec(link.href);
-						break;
+				for (var j=0; j<(scpSite.linkTemplates.length) && !isScp; j++)
+					for (var k=scpSite.articleTemplates.length-1; k>=0; k--) {						
+						var linkRegEx = new RegExp(scpSite.linkTemplates[j]+scpSite.articleTemplates[k].urlTemplate.replace("@", scpSite.articleTemplates[k].numberRegEx)+"$", "ig");
+						if (linkRegEx.test(link.href)) {
+							isScp = true;
+							scpTemplate = scpSite.articleTemplates[k];							
+							scpNumber = new RegExp(scpTemplate.numberRegEx+"$", "i").exec(link.href);
+							break;
+						}
 					}
-				}
-				if (isScp && scpNumber){
+				if (isScp && scpNumber) {
 					if (!link.title)
 						setLinkTitle(link, scpSite, scpNumber[0]);
 	//				addLinkPopupDialog(link, scpSite, scpNumber[0]);

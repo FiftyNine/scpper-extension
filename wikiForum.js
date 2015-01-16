@@ -4,38 +4,35 @@ var FORUM_PAGE_LINKS_CLASS_NAME = "target";
 var FORUM_POST_CONTENT_ID_TEMPLATE = "\\bpost-content-\\d+\\b";
 
 // Process post's content, linkify text nodes and add linked numbers
-function scpProcessForumPostContent(node, linkedNumbers) {
+function scpProcessForumPostContent(node, linkedNumbers, template) {
 	if ((node.childNodes.length == 0) && (node.nodeType == Node.TEXT_NODE))
-		scpLinkifyTextNode(node, linkedNumbers)
+		scpLinkifyTextNode(node, linkedNumbers, template)
 	// Skip certain nodes
 	else if (node.nodeName.toUpperCase()!='A')
 			for (var i=0; i<node.childNodes.length; i++)
-				scpProcessForumPostContent(node.childNodes[i], linkedNumbers);		
+				scpProcessForumPostContent(node.childNodes[i], linkedNumbers, template);		
 	else
 		scpAddLinkedNumber(node, linkedNumbers);
 }
 
 // Recursively iterate through all posts on a page and linkify them
-function scpEnumForumPostContentElements(elem, linkedNumbers){
+function scpEnumForumPostContentElements(elem, linkedNumbers, template){
 	if (new RegExp(FORUM_POST_CONTENT_ID_TEMPLATE, "i").test(elem.id))
-		scpProcessForumPostContent(elem, linkedNumbers);
+		scpProcessForumPostContent(elem, linkedNumbers, template);
 	else
 		for (var i=0; i<elem.children.length; i++)
-			scpEnumForumPostContentElements(elem.children[i], linkedNumbers);
+			scpEnumForumPostContentElements(elem.children[i], linkedNumbers, template);
 }
 
 // Iterate through all posts on a page and linkify them
-function scpForumProcessPosts(){
+function scpForumProcessPosts() {
 	if (!scpperSettings.useLinkifier)
 		return;
 	var linkedNumbers = {};
-	if (scpperSettings.linkifierTemplate == "lax")
-		scpTemplate = SCP_TEMPLATE_LAX
-	else
-		scpTemplate = SCP_TEMPLATE_STRICT;
 	var postsContainer = document.getElementById(FORUM_THREAD_CONTAINER_POSTS_ID);
-	if (postsContainer!=null)
-		scpEnumForumPostContentElements(postsContainer, linkedNumbers);
+	if (postsContainer != null)
+		for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--) 
+			scpEnumForumPostContentElements(postsContainer, linkedNumbers, scpWebsite.articleTemplates[i]);
 }
 
 // Override handlers on active page switch to use my handlers instead of default

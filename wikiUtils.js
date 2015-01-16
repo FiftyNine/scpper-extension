@@ -3,26 +3,34 @@ var scpTemplate, scpSearchTemplate;
 
 // Add linked SCP from an <a> elem
 function scpAddLinkedNumber(node, linkedNumbers) {
-	if (node.nodeName.toUpperCase()=="A") {
-		var ref = new RegExp(SCP_TEMPLATE_STRICT, "i").exec(node.getAttribute("href"));
-		if (ref != null) {
-			var num = /\d{3,4}/.exec(ref[0]);
-			if (num != null)
-				linkedNumbers[num[0]]=1;
-		}
+	if (node.nodeName.toUpperCase()=="A") 
+		for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--) {		
+			var template = scpWebsite.articleTemplates[i];
+			var ref = new RegExp(template.urlTemplate.replace("@", template.numberRegEx)+"$", "i").exec(node.getAttribute("href"));
+			if (ref != null) {
+				var num = new RegExp(template.numberRegEx, "i").exec(ref[0]);
+				if (num != null)
+					linkedNumbers[num[0].toUpperCase()] = 1;
+			}
 	}
 }	
 
 // Process a text node and convert matching text into SCP links
-function scpLinkifyTextNode(node, linkedNumbers) {
+function scpLinkifyTextNode(node, linkedNumbers, template) {
 	if (!scpperSettings.useLinkifier)
 		return;
-	var scpSearchTemplate = "([\\W_]|\\b)"+scpTemplate+"([\\W_]|\\b)";
+	var scpSearchTemplate;
+	if ((template.kind == "MAIN") && (scpperSettings.linkifierTemplate == "strict")) 		
+		scpSearchTemplate = template.strictRegEx
+	else
+		scpSearchTemplate = template.laxRegEx;
+	var trimmedScpRegEx = new RegExp(scpSearchTemplate, "igm");				
+	scpSearchTemplate = "([\\W_]|\\b)"+scpSearchTemplate+"([\\W_]|\\b)";
 	var parent = node.parentElement;	
 	if (!node.nodeValue || (parent == null))
 		return;
-	var scpRegEx = new RegExp(scpSearchTemplate, "igm");
-	var trimmedScpRegEx = new RegExp(scpTemplate, "igm");		
+	var scpRegEx = new RegExp(scpSearchTemplate, "igm");	
+	var scpNumberRegEx = new RegExp(template.numberRegEx, "igm");
 	var oldText = node.nodeValue;
 	var found = false;
 	var scpMatch, trimmedMatch;
@@ -30,33 +38,23 @@ function scpLinkifyTextNode(node, linkedNumbers) {
 	var tmp = 0;			
 	while ((scpMatch = scpRegEx.exec(oldText)) != null) {
 		found = true;		
-		var scpNumber = /\d{3,4}/.exec(scpMatch[0]);
-		if ((scpNumber != null) && (Number(scpNumber[0]) < MAX_SCP_NUMBER) && (!linkedNumbers[scpNumber[0]])
-			/*&& (Number(scpNumber[0]).toString()==scpNumber[0])*/) {										
-				trimmedScpRegEx.lastIndex = scpRegEx.lastIndex-scpMatch[0].length; 
-				//console.log(trimmedScpRegEx.lastIndex+" "+scpMatch[0].length+" \""+scpMatch[0]+"\" \""+oldText+"\"");
+		var scpNumber = scpNumberRegEx.exec(scpMatch[0]);
+		// General check
+		if ((scpNumber != null) && (!linkedNumbers[scpNumber[0].toUpperCase()])) {
+				// Separate check for main list SCPs
+				if ((template.kind == "MAIN") && (Number(scpNumber[0]) > MAX_SCP_NUMBER))
+					continue;		
+				trimmedScpRegEx.lastIndex = scpRegEx.lastIndex-scpMatch[0].length;
 				trimmedMatch = trimmedScpRegEx.exec(oldText);
-				//console.log("\""+scpMatch[0]+"\" \""+trimmedMatch[0]+"\"");
 				var text = oldText.substring(prevPos, trimmedScpRegEx.lastIndex-trimmedMatch[0].length);
 				var textNode = document.createTextNode(text);
 				parent.insertBefore(textNode, node);
 				var scpLink = document.createElement('a');
 				var scpLinkText = document.createTextNode(trimmedMatch[0]);
-				scpLink.setAttribute("href", "/scp-"+scpNumber[0]);
-				
-/*				scpLink.title="asdsad";
-				if (scpLink.className)
-					scpLink.className = scpLink.className+" scpArticleLink"
-				else
-					scpLink.className = "qweasd scpArticleLink";
-					
-				$(scpLink).mouseenter(function () {$("#scpTestDialog").dialog("open");});				
-				$(scpLink).mouseleave(function () {$("#scpTestDialog").dialog("close");});				*/
+				scpLink.setAttribute("href", template.urlTemplate.replace("@", scpNumber[0]));				
 				scpLink.appendChild(scpLinkText);
-				//console.log(scpLink.getAttribute("href"));
 				parent.insertBefore(scpLink, node);
 				scpAddLinkedNumber(scpLink, linkedNumbers);
-				//linkedNumbers.push(scpNumber[0]);
 				prevPos = trimmedScpRegEx.lastIndex;
 			}
 	}

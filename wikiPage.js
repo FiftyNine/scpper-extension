@@ -7,19 +7,19 @@ var WIKI_PAGE_IGNORE_ELEM_CLASSES = ["A", "IMG", "SCRIPT"]
 var pageScpNumber="";
 
 // Recursively process DOM nodes of a main wiki page and linkify text nodes
-function enumWikiPageChildNodes(node, linkedNumbers, template) {	
+function enumWikiPageChildNodes(node, linkedNumbers, template, strict) {
 	if (!scpperSettings.useLinkifier)
 		return;
 	// Linkify lowest level text nodes
 	if ((node.childNodes.length == 0) && (node.nodeType == Node.TEXT_NODE))
-		scpLinkifyTextNode(node, linkedNumbers, template);
+		scpLinkifyTextNode(node, linkedNumbers, template, strict);
 	// Skip certain nodes
-	else if ((WIKI_PAGE_IGNORE_ELEM_CLASSES.indexOf(node.nodeName.toUpperCase()) == -1) 
+	else if ((WIKI_PAGE_IGNORE_ELEM_CLASSES.indexOf(node.nodeName.toUpperCase()) == -1)
 		&& (scpWebsite.ignoreElements.indexOf(node.className.toUpperCase()) == -1)) {
 			for (var i=0; i<node.childNodes.length; i++)
-				enumWikiPageChildNodes(node.childNodes[i], linkedNumbers, template);		
+				enumWikiPageChildNodes(node.childNodes[i], linkedNumbers, template, strict);
 	// Add links to the list of linked SCPs
-	} else 
+	} else
 		scpAddLinkedNumber(node, linkedNumbers);
 }
 
@@ -79,7 +79,10 @@ function processWikiPage() {
 			console.log("Error: PageContent not found");
 			return;
 		}					
+		var strict = true;
+		if (scpperSettings.linkifierTemplate == "lax") 		
+			strict = false;
 		for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--)
-			enumWikiPageChildNodes(contentElement, linkedNumbers, scpWebsite.articleTemplates[i]);
+			enumWikiPageChildNodes(contentElement, linkedNumbers, scpWebsite.articleTemplates[i], strict);
 	}	
 }

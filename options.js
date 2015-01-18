@@ -9,10 +9,16 @@ function refreshControls() {
 	useLinkifier.checked = scpperSettings.useLinkifier;	
 	var linkifierTemplate = document.getElementById("linkifier-template");
 	linkifierTemplate.disabled = !scpperSettings.useLinkifier;		
-	if (scpperSettings.linkifierTemplate == "strict")
-		linkifierTemplate.value = "strict"
-	else
-		linkifierTemplate.value = "lax";
+	switch (scpperSettings.linkifierTemplate) {
+		case "strict": 
+			linkifierTemplate.value = "strict";
+			break;
+		case "lax": 
+			linkifierTemplate.value = "lax";
+			break
+		default: 
+			linkifierTemplate.value = "smart";
+	}
 	var authorPage = document.getElementById("author-page-link");
 	authorPage.disabled = false;
 	authorPage.checked = scpperSettings.addAuthorPage;

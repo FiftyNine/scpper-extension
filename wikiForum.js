@@ -4,24 +4,24 @@ var FORUM_PAGE_LINKS_CLASS_NAME = "target";
 var FORUM_POST_CONTENT_ID_TEMPLATE = "\\bpost-content-\\d+\\b";
 
 // Process post's content, linkify text nodes and add linked numbers
-function scpProcessForumPostContent(node, linkedNumbers, template) {
+function scpProcessForumPostContent(node, linkedNumbers, template, strict) {
 	if ((node.childNodes.length == 0) && (node.nodeType == Node.TEXT_NODE))
-		scpLinkifyTextNode(node, linkedNumbers, template)
+		scpLinkifyTextNode(node, linkedNumbers, template, strict)
 	// Skip certain nodes
 	else if (node.nodeName.toUpperCase()!='A')
 			for (var i=0; i<node.childNodes.length; i++)
-				scpProcessForumPostContent(node.childNodes[i], linkedNumbers, template);		
+				scpProcessForumPostContent(node.childNodes[i], linkedNumbers, template, strict);
 	else
 		scpAddLinkedNumber(node, linkedNumbers);
 }
 
 // Recursively iterate through all posts on a page and linkify them
-function scpEnumForumPostContentElements(elem, linkedNumbers, template){
+function scpEnumForumPostContentElements(elem, linkedNumbers, template, strict) {
 	if (new RegExp(FORUM_POST_CONTENT_ID_TEMPLATE, "i").test(elem.id))
-		scpProcessForumPostContent(elem, linkedNumbers, template);
+		scpProcessForumPostContent(elem, linkedNumbers, template, strict);
 	else
 		for (var i=0; i<elem.children.length; i++)
-			scpEnumForumPostContentElements(elem.children[i], linkedNumbers, template);
+			scpEnumForumPostContentElements(elem.children[i], linkedNumbers, template, strict);
 }
 
 // Iterate through all posts on a page and linkify them
@@ -30,9 +30,13 @@ function scpForumProcessPosts() {
 		return;
 	var linkedNumbers = {};
 	var postsContainer = document.getElementById(FORUM_THREAD_CONTAINER_POSTS_ID);
-	if (postsContainer != null)
-		for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--) 
-			scpEnumForumPostContentElements(postsContainer, linkedNumbers, scpWebsite.articleTemplates[i]);
+	if (postsContainer != null) {
+		var strict = false;
+		if (scpperSettings.linkifierTemplate == "strict") 		
+			strict = true;	
+		for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--)
+			scpEnumForumPostContentElements(postsContainer, linkedNumbers, scpWebsite.articleTemplates[i], strict);
+	}
 }
 
 // Override handlers on active page switch to use my handlers instead of default

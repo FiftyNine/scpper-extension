@@ -16,11 +16,11 @@ function scpAddLinkedNumber(node, linkedNumbers) {
 }	
 
 // Process a text node and convert matching text into SCP links
-function scpLinkifyTextNode(node, linkedNumbers, template) {
+function scpLinkifyTextNode(node, linkedNumbers, template, strict) {
 	if (!scpperSettings.useLinkifier)
 		return;
 	var scpSearchTemplate;
-	if ((template.kind == "MAIN") && (scpperSettings.linkifierTemplate == "strict")) 		
+	if (strict) 		
 		scpSearchTemplate = template.strictRegEx
 	else
 		scpSearchTemplate = template.laxRegEx;

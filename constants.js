@@ -1,5 +1,5 @@
 var MAX_SCP_NUMBER = 3000;
-var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24*7; // Milliseconds in a week
+var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24; // Milliseconds in a day
 
 // List of all supported SCP websites and their properties
 // Names must be unique!
@@ -140,7 +140,7 @@ var SCP_WEBSITES = [
 // Default extensions settings used on first launch or after updated to a newer version
 var scpperDefaultSettings = {
 	useLinkifier: true,
-	linkifierTemplate: "lax",
+	linkifierTemplate: "smart",
 	addAuthorPage: true,
 	addArticleName: true,
 	overrideForum: true,

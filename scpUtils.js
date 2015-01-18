@@ -74,22 +74,30 @@ function checkIfForum() {
 // Extracts scp names from document and places them into array of pairs {number, name}
 function extractScpNames(doc, template) {
 	var list = [];
+	var getNext = function (elem) {
+		if (!elem)
+			return null;
+		if (elem.nextSibling)
+			return elem.nextSibling
+		else
+			return getNext(elem.parentElement);
+	}
 	for (var i=0; i<doc.links.length; i++) {
 		var link = doc.links[i];
 		var href = link.attributes["href"].value;		
 		if ((link.nodeName.toUpperCase() == 'A')&&(new RegExp(template.urlTemplate.replace("@", template.numberRegEx)+"$", "i").test(href))) {
 			var scpNumber = new RegExp(template.numberRegEx+"$", "i").exec(href);
 			var text = "";
-			var textElem = link.nextSibling;
-			while (textElem && (text.search("\n")<0)) {
+			var textElem = getNext(link);
+			while (textElem && (textElem.nodeName.toUpperCase()!="A") && (text.search("\n")<0)) {
 				text=text+textElem.textContent;
-				textElem = textElem.nextSibling;
+				textElem = getNext(textElem);
 			}
 			var scpName = "";
 			if (text) {
 				scpName = /[^\s-—].*/.exec(text);
 				if (scpName)
-					list.push({number: scpNumber[0], name: scpName[0]});
+					list.push({number: scpNumber[0].toUpperCase(), name: scpName[0]});
 			}
 		}
 	}
@@ -169,7 +177,7 @@ function validateScpNameCache(website, callback) {
 // Get SCP article name from the mainlist
 function getScpName(website, number, callback) {
 	validateScpNameCache(website, function() {
-		var nameKey = website.name+"SCP"+number+"NAME";
+		var nameKey = website.name+"SCP"+number.toUpperCase()+"NAME";
 		chrome.storage.local.get(nameKey, function(item) {
 			callback(item[nameKey]);
 	});

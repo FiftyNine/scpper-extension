@@ -1,7 +1,7 @@
 // Setup default settings when first installed
 chrome.runtime.onInstalled.addListener(function (details) {
 	chrome.storage.sync.get("scpperSettings", function(value) {
-		var newSettings = value;
+		var newSettings = value.scpperSettings;
 		if (!newSettings)
 			newSettings = {};
 		var keys = Object.keys(scpperDefaultSettings);

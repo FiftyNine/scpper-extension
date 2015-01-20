@@ -111,7 +111,7 @@ function processUserInfoDialog(userName) {
 		linkElem.setAttribute("href", memberPage.link);
 		var row = tableElem.insertRow(-1);
 		var head = row.insertCell(0);
-		head.innerHTML = "<b>SCP author page:</b>";
+		head.innerHTML = "<b>"+chrome.i18n.getMessage("AUTHOR_PAGE")+"</b>";
 		var body = row.insertCell(1);
 		body.appendChild(linkElem);		
 	});

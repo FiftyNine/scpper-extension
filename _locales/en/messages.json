@@ -1,0 +1,92 @@
+﻿{
+	"MANIFEST_DESCRIPTION": {
+		"message": "Handy little thing to improve your SCP browsing experience",
+		"description": "Short description displayed on Chrome extensions page"
+	},
+	"AUTHOR_PAGE": {
+		"message": "SCP author page:",
+		"description": "Label that gets added to wikidot user info dialog"
+	},
+	"OPTIONS_TITLE": {
+		"message": "SCPper settings",
+		"description": "Title of the options page (label of tab in Chrome)"
+	},
+	"OPTIONS_HEADER": {
+		"message": "SCPper extension settings",
+		"description": "Header of the options page"
+	},
+	"OPTIONS_WIKI_SETTINGS_HEADER": {
+		"message": "Wiki enhancement settings",
+		"description": "Sub-header for the list of on-wiki features"
+	},
+	"OPTIONS_USE_LINKIFIER": {
+		"message": "Convert plain text to SCP links:",
+		"description": "Description for the checkbox deciding whether or not plain text will be converted into links (linkified)"
+	},
+	"OPTIONS_LINKIFIER_STRICT_TEMPLATE": {
+		"message": "Strict (\"SCP-XXX[X]\")",
+		"description": "Description for more strict linkifier option (in dropdown)"
+	},
+	"OPTIONS_LINKIFIER_LAX_TEMPLATE": {
+		"message": "Lax (\"SCP-XXX[X]\" and \"XXX[X]\")",
+		"description": "Description for less strict linkifier option (in dropdown)"
+	},
+	"OPTIONS_LINKIFIER_SMART_TEMPLATE": {
+		"message": "Strict on Wiki, lax on forums",
+		"description": "Description for smart linkifier option (in dropdown)"
+	},
+	"OPTIONS_AUTHOR_PAGE": {
+		"message": "Add author page link to user info dialogue",
+		"description": "Description for the checkbox deciding whether or not add link to SCP author(member) page to user info dialog"
+	},
+	"OPTIONS_ARTICLE_NAME_IN_TITLE": {
+		"message": "Add name of article from main list to title",
+		"description": "Description for the checkbox deciding whether or not add SCP name from the main list to the title (when reading an article)"
+	},
+	"OPTIONS_FORUM_PAGES_HISTORY": {
+		"message": "Add forum pages to browser history",
+		"description": "Description for the checkbox deciding whether or not add forum thread pages to browser history"
+	},
+	"OPTIONS_GLOBAL_SETTINGS_HEADER": {
+		"message": "Global settings",
+		"description": "Label for a list of features used both on wiki and other websites"
+	},
+	"OPTIONS_TOOLTIP_NAMES": {
+		"message": "Add tooltips to SCP links",
+		"description": "Description for the checkbox deciding whether or not a tooltip with an article name should be shown when user is hovering mouse over a link to SCP"
+	},
+	"OPTIONS_FOOTER_LICENSE": {
+		"message": "Source code and all resources of this extension are distributed under",
+		"description": "First part of the first line of the footer on options page"
+	},
+	"OPTIONS_FOOTER_LICENSE_NAME": {
+		"message": "Creative Commons Attribution-ShareAlike 3.0 license",
+		"description": "Name of the license. Probably shouldn't be translated at all, except, maybe, word license. Full line in english: 'Source code and all resources of this extension are distributed under Creative Commons Attribution-ShareAlike 3.0 license"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION1": {
+		"message": "Idea of SCP objects, SCP Foundation, SCP Foundation logo, \"Secure. Contain. Protect\" motto were created by",
+		"description": "First part of the second line of the footer"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION2": {
+		"message": "SCP creative community",
+		"description": "Second part of the second line of the footer"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION3": {
+		"message": "and are available under the same license.",
+		"description": "Third and last part of the second line of the footer. Full line in english: 'Idea of SCP objects, SCP Foundation, SCP Foundation logo, \"Secure. Contain. Protect\" motto were created by SCP creative community and are available under the same license.'"
+	},
+	"OPTIONS_EASTER_EGG": {
+		"message": "Jr. technician F\u2588\u2588\u2588\u2588\u2588\u2588\u2588: \"Hey, man, you sure you don't want to just [DATA EXPUNGED] this thing?\"",
+		"description": "A little easter egg on the options page :P"
+	},		
+	"OPTIONS_SAVING_ERROR": {
+		"message": "Unexpected error: $ERROR$\nSettings weren't saved.",
+		"description": "Text of error that is show if options can't be saved. Ignore $ERROR$. \n is a new string. Don't translate placeholders",
+		"placeholders": {
+			"ERROR": {
+				"content": "$1",
+				"example": "Drive not found"
+			}
+		}
+	}	
+}

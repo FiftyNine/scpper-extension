@@ -2,13 +2,14 @@
   "manifest_version": 2,
   "name": "SCPper",
   "version": "0.1.1",
-  "description": "Handy little thing to improve your SCP browsing experience",
+  "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
 	"128": "SCP-logo-128.png",
 	"48": "SCP-logo-48.png",
 	"16": "SCP-logo-16.png"
   },
   "author": "Alexander \"FiftyNine\" Krivopalov",
+  "default_locale": "en",
   "background": {
 	"scripts": ["constants.js", "eventPage.js"],
 	"persistent": false

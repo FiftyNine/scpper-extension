@@ -38,13 +38,29 @@ function refreshControls() {
 		if (!inputs[i].checked)
 			optionsOn--;
 	if (optionsOn == 0)
-		statusElement.innerText = 'Jr. technician F\u2588\u2588\u2588\u2588\u2588\u2588\u2588: "Hey, man, you sure you don\'t want to just [DATA EXPUNGED] this thing?"'
+		statusElement.innerText = chrome.i18n.getMessage("OPTIONS_EASTER_EGG");
 	else
 		statusElement.innerText = '';
 }
 
+// Replaces strings in text nodes with actual text message from current locale
+function localize() {	
+	var walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+	while (walker.nextNode()) {
+		var msgRegEx = /__MSG_\w+__/gm;
+		var msg;
+		while ((msg = msgRegEx.exec(walker.currentNode.textContent)) != null) {
+			var msgName = msg[0].substring(6, msg[0].length-2);
+			var localizedMsg = chrome.i18n.getMessage(msgName);
+			walker.currentNode.textContent = walker.currentNode.textContent.replace(msg[0], localizedMsg);
+			msgRegEx.lastIndex = msgRegEx.lastIndex-msg[0].length+localizedMsg.length;
+		}
+	}
+}
+
 // Perform necessary initialization
 function initOptions() {
+	localize();
 	statusElement = document.getElementById("status");
 	var inputs = document.querySelectorAll("input");
 	// Disable everything until settings are initialized
@@ -76,7 +92,7 @@ function setOptionAndSave(name, value) {
 		if (!chrome.runtime.lastError) {
 			scpperSettings = newValue;
 		} else if (statusElement) {
-			statusElement.innerText = "Unexpected error: "+chrome.runtime.lastError.message+"\nSettings weren't saved.";
+			statusElement.innerText = chrome.i18n.getMessage("OPTIONS_SAVING_ERROR", [chrome.runtime.lastError.message]);
 		}
 		refreshControls();
 	});

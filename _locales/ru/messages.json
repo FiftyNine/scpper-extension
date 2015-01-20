@@ -1,0 +1,92 @@
+﻿{
+	"MANIFEST_DESCRIPTION": {
+		"message": "Улучшайзер для портала Фонда SCP",
+		"description": "Short description displayed on Chrome extensions page"
+	},
+	"AUTHOR_PAGE": {
+		"message": "Личное дело автора:",
+		"description": "Label that gets added to wikidot user info dialog"
+	},
+	"OPTIONS_TITLE": {
+		"message": "Настройки SCPper",
+		"description": "Title of the options page (label of tab in Chrome)"
+	},
+	"OPTIONS_HEADER": {
+		"message": "Настройки расширения SCPper",
+		"description": "Header of the options page"
+	},
+	"OPTIONS_WIKI_SETTINGS_HEADER": {
+		"message": "Улучшения для сайта Фонда SCP",
+		"description": "Sub-header for the list of on-wiki features"
+	},
+	"OPTIONS_USE_LINKIFIER": {
+		"message": "Преобразовывать текст в ссылки на объекты SCP по шаблону:",
+		"description": "Description for the checkbox deciding whether or not plain text will be converted into links (linkified)"
+	},
+	"OPTIONS_LINKIFIER_STRICT_TEMPLATE": {
+		"message": "SCP-XXX[X] (строгий)",
+		"description": "Description for more strict linkifier option (in dropdown)"
+	},
+	"OPTIONS_LINKIFIER_LAX_TEMPLATE": {
+		"message": "SCP-XXX[X] и XXX[X] (cвободный)",
+		"description": "Description for less strict linkifier option (in dropdown)"
+	},
+	"OPTIONS_LINKIFIER_SMART_TEMPLATE": {
+		"message": "Строгий в статьях, свободный на форуме",
+		"description": "Description for smart linkifier option (in dropdown)"
+	},
+	"OPTIONS_AUTHOR_PAGE": {
+		"message": "Добавлять ссылку на личное дело в диалог информации о пользователе",
+		"description": "Description for the checkbox deciding whether or not add link to SCP author(member) page to user info dialog"
+	},
+	"OPTIONS_ARTICLE_NAME_IN_TITLE": {
+		"message": "Добавлять название объекта SCP в заголовок статьи",
+		"description": "Description for the checkbox deciding whether or not add SCP name from the main list to the title (when reading an article)"
+	},
+	"OPTIONS_FORUM_PAGES_HISTORY": {
+		"message": "Запоминать в истории браузера переходы между страницами темы на форуме",
+		"description": "Description for the checkbox deciding whether or not add forum thread pages to browser history"
+	},
+	"OPTIONS_GLOBAL_SETTINGS_HEADER": {
+		"message": "Глобальные настройки",
+		"description": "Label for a list of features used both on wiki and other websites"
+	},
+	"OPTIONS_TOOLTIP_NAMES": {
+		"message": "Показывать название объекта SCP при наведении курсора на ссылку",
+		"description": "Description for the checkbox deciding whether or not a tooltip with an article name should be shown when user is hovering mouse over a link to SCP"
+	},
+	"OPTIONS_FOOTER_LICENSE": {
+		"message": "Исходный код и все ресурсы этого расширения распространяются по",
+		"description": "First part of the first line of the footer on options page"
+	},
+	"OPTIONS_FOOTER_LICENSE_NAME": {
+		"message": "лицензии Creative Commons Attribution-ShareAlike 3.0",
+		"description": "Name of the license. Probably shouldn't be translated at all, except, maybe, word license. Full line in english: 'Source code and all resources of this extension are distributed under Creative Commons Attribution-ShareAlike 3.0 license"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION1": {
+		"message": "Концепция объектов SCP, Фонда SCP, логотип Фонда SCP, девиз \"Secure. Contain. Protect\" были созданы",
+		"description": "First part of the second line of the footer"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION2": {
+		"message": "творческим сообществом SCP",
+		"description": "Second part of the second line of the footer"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION3": {
+		"message": "и доступны в рамках той же лицензии.",
+		"description": "Third and last part of the second line of the footer. Full line in english: 'Idea of SCP objects, SCP Foundation, SCP Foundation logo, \"Secure. Contain. Protect\" motto were created by SCP creative community and are available under the same license.'"
+	},
+	"OPTIONS_EASTER_EGG": {
+		"message": "Мл. тех. специалист F\u2588\u2588\u2588\u2588\u2588\u2588\u2588: «Э-э, слушай, а может, эту штуку лучше вообще [ДАННЫЕ УДАЛЕНЫ]?»",
+		"description": "A little easter egg on the options page :P"
+	},		
+	"OPTIONS_SAVING_ERROR": {
+		"message": "Ошибка: $ERROR$\nНастройки не были сохранены",
+		"description": "Text of error that is show if options can't be saved. Ignore $ERROR$. \n is a new string. Don't translate placeholders",
+		"placeholders": {
+			"ERROR": {
+				"content": "$1",
+				"example": "Drive not found"
+			}
+		}
+	}	
+}

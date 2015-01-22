@@ -56,6 +56,14 @@ function localize() {
 			msgRegEx.lastIndex = msgRegEx.lastIndex-msg[0].length+localizedMsg.length;
 		}
 	}
+	// Add credit for the translation as the last line
+	var creditText = chrome.i18n.getMessage("TRANSLATION_CREDIT", [chrome.i18n.getMessage("TRANSLATORS")]);
+	if (creditText.length>0) {
+		var credit = document.createElement("p");
+		credit.className = "footnote";
+		credit.innerHTML = creditText;
+		document.body.appendChild(credit);
+	}
 }
 
 // Perform necessary initialization

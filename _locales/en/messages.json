@@ -88,5 +88,19 @@
 				"example": "Drive not found"
 			}
 		}
-	}	
+	},
+	"TRANSLATION_CREDIT": {
+		"message": "$TRANSLATORS$",
+		"description": "Last line of the options page crediting you for the translation =)",
+		"placeholders": {
+			"TRANSLATORS": {
+				"content": "$1",
+				"example": "FiftyNine, LIX"
+			}
+		}
+	},	
+	"TRANSLATORS": {
+		"message": "",
+		"description": "List of translators' nicknames divided by commas"
+	}
 }

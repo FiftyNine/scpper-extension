@@ -76,7 +76,7 @@
 		"description": "Third and last part of the second line of the footer. Full line in english: 'Idea of SCP objects, SCP Foundation, SCP Foundation logo, \"Secure. Contain. Protect\" motto were created by SCP creative community and are available under the same license.'"
 	},
 	"OPTIONS_EASTER_EGG": {
-		"message": "下級技術者 F\u2588\u2588\u2588\u2588\u2588\u2588\u2588: \"おい、あんた、これを[データ削除済]してしまいたくないんだろう？\"",
+		"message": "下級技術者 F\u2588\u2588\u2588\u2588\u2588\u2588\u2588: \"よう、あんた、どうやらこいつを[データ削除済]してしまいたくないみたいだな？\"",
 		"description": "A little easter egg on the options page :P"
 	},		
 	"OPTIONS_SAVING_ERROR": {
@@ -88,5 +88,19 @@
 				"example": "Drive not found"
 			}
 		}
-	}	
+	},
+	"TRANSLATION_CREDIT": {
+		"message": "翻訳者: $TRANSLATORS$",
+		"description": "Last line of the options page crediting you for the translation =)",
+		"placeholders": {
+			"TRANSLATORS": {
+				"content": "$1",
+				"example": "FiftyNine, LIX"
+			}
+		}
+	},
+	"TRANSLATORS": {
+		"message": "<a href=\"http://www.wikidot.com/user:info/m0ch12uk1\">m0ch12uk1</a>",
+		"description": "List of translators' nicknames divided by commas"
+	}
 }

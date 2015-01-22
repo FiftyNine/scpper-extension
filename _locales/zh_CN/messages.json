@@ -88,5 +88,19 @@
 				"example": "Drive not found"
 			}
 		}
-	}	
+	},
+	"TRANSLATION_CREDIT": {
+		"message": "翻译者：$TRANSLATORS$",
+		"description": "Last line of the options page crediting you for the translation =)",
+		"placeholders": {
+			"TRANSLATORS": {
+				"content": "$1",
+				"example": "FiftyNine, LIX"
+			}
+		}
+	},
+	"TRANSLATORS": {
+		"message": "<a href=\"http://www.wikidot.com/user:info/SunnyParallax\">SunnyParallax</a>",
+		"description": "List of translators' nicknames divided by commas"
+	}
 }

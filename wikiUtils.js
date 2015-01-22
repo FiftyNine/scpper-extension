@@ -86,12 +86,14 @@ function getUserMemberPageLinkFromDoc(doc, userName) {
 function getUserMemberPageLink(userName, callback) {
 	if (!scpWebsite || !scpWebsite.membersPages)
 		return;
-	makeXMLHttpRequest(null, scpWebsite.primaryLink+scpWebsite.membersPages, function(sender, response) {
-		var doc = document.implementation.createHTMLDocument("");
-		doc.write(response);
-		var memberPage = getUserMemberPageLinkFromDoc(doc, userName);
-		if (memberPage)
-			callback(memberPage);
+	makeXMLHttpRequest(null, scpWebsite.primaryLink+scpWebsite.membersPages, function(sender, response, success) {
+		if (success) {
+			var doc = document.implementation.createHTMLDocument("");
+			doc.write(response);
+			var memberPage = getUserMemberPageLinkFromDoc(doc, userName);
+			if (memberPage)
+				callback(memberPage);
+		}
 	});
 }
 

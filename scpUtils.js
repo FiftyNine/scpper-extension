@@ -11,8 +11,8 @@ var scpperSettings;
 function makeXMLHttpRequest(sender, url, callback) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
-			if (request.readyState == 4 && request.status == 200)
-				callback(sender, request.responseText); 
+			if (request.readyState == 4)
+				callback(sender, request.responseText, request.status==200); 
 	}
 	request.open("GET", url, true);
 	request.send();
@@ -128,13 +128,15 @@ function fillScpNameCache(website, callback) {
 	var errors = false;
 	for (var i=0; i<pages.length; i++) {
 		var url = website.primaryLink+pages[i];
-		makeXMLHttpRequest(i, url, function(sender, response) {
-			var doc = document.implementation.createHTMLDocument("");
-			doc.write(response);
-			var list = extractScpNames(doc, templates[sender]);
+		makeXMLHttpRequest(i, url, function(sender, response, success) {
 			var storeObj = {};
-			for (var j=0; j<list.length; j++)
-				storeObj[website.name+"SCP"+list[j].number+"NAME"] = list[j].name;
+			if (success) {
+				var doc = document.implementation.createHTMLDocument("");
+				doc.write(response);
+				var list = extractScpNames(doc, templates[sender]);			
+				for (var j=0; j<list.length; j++)
+					storeObj[website.name+"SCP"+list[j].number+"NAME"] = list[j].name;
+			}
 			chrome.storage.local.set(storeObj, function(){
 				if (chrome.runtime.lastError)
 					errors = true;

@@ -1,0 +1,30 @@
+﻿Petit outil pratique conçu pour améliorer votre expérience SCP.
+SCPper (prononcé "skipper") ajoute de nombreuses fonctionnalités au Wiki de la Fondation SCP et à ses branches de traduction. Il améliore également les liens menant vers ces sites.
+SCPper est entièrement personnalisable, et toutes ses options sont désactivables.
+
+Fonctionnalités du Wiki :
+ - Conversion de textes simples (SCP-1234) en lien vers les articles en question.
+ - Lorsqu'un article est en train d'être lu, son nom tel qu'il apparaît dans la liste principale est ajouté au titre.
+ - Ajoute un lien vers la page d'auteur à la description d'utilisateur.
+ - Modifie le comportement du forum afin de rajouter les pages visitées à l'historique de navigation, et permet de naviguer à travrs ces pages avec les boutons "Page précédente" et "Page suivante".
+
+Fonctionnalités globales :
+ - Ajoute une infobulle avec le nom de l'article à tout lien vers un article SCP.
+
+Projets supportés :
+ - Fondation SCP (http://www.scp-wiki.net/)
+ - Branche russe (http://scp-ru.wikidot.com/)
+ - Branche coréenne (http://scp-kr.wikidot.com/)
+ - Branche chinoise (http://www.scp-wiki-cn.org/)
+ - Branche française (http://fondationscp.wikidot.com/)
+ - Branche polonaise (http://www.scp-wiki.pl/)
+ - Branche espagnole (http://lafundacionscp.wikidot.com/)
+ - Branche thaïlandaise (http://scp-th.wikidot.com/)
+ - Branche japonaise (http://scp-jp.wikidot.com/)
+
+Certaines fonctionnalités peuvent ne pas fonctionner sur certains Wiki à cause de la différente de formatage.
+
+Page Github de SCPper : https://github.com/FiftyNine/SCPper
+
+Le code source et toutes les ressources de cette extension sont sous licence Creative Commons Attribution-ShareAlike 3.0.
+Les idées d'objets SCP, la Fondation SCP, son logo, sa phrase \"Sécuriser. Confiner. Protéger\" ont été créées par la communauté SCP et sont toutes soumises à la même licence.

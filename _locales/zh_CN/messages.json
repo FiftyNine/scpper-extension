@@ -1,0 +1,92 @@
+﻿{
+	"MANIFEST_DESCRIPTION": {
+		"message": "改善你的SCP阅读体验的便捷小工具",
+		"description": "Short description displayed on Chrome extensions page"
+	},
+	"AUTHOR_PAGE": {
+		"message": "SCP作者页：",
+		"description": "Label that gets added to wikidot user info dialog"
+	},
+	"OPTIONS_TITLE": {
+		"message": "SCPper设置",
+		"description": "Title of the options page (label of tab in Chrome)"
+	},
+	"OPTIONS_HEADER": {
+		"message": "SCPper扩展设置",
+		"description": "Header of the options page"
+	},
+	"OPTIONS_WIKI_SETTINGS_HEADER": {
+		"message": "维基改善设置",
+		"description": "Sub-header for the list of on-wiki features"
+	},
+	"OPTIONS_USE_LINKIFIER": {
+		"message": "将单纯文本内容转化为SCP链接：",
+		"description": "Description for the checkbox deciding whether or not plain text will be converted into links (linkified)"
+	},
+	"OPTIONS_LINKIFIER_STRICT_TEMPLATE": {
+		"message": "标准 (\"SCP-XXX[X]\")",
+		"description": "Description for more strict linkifier option (in dropdown)"
+	},
+	"OPTIONS_LINKIFIER_LAX_TEMPLATE": {
+		"message": "宽泛 (\"SCP-XXX[X]\" and \"XXX[X]\")",
+		"description": "Description for less strict linkifier option (in dropdown)"
+	},
+	"OPTIONS_LINKIFIER_SMART_TEMPLATE": {
+		"message": "在维基上使用标准设置，在论坛上使用宽泛设置",
+		"description": "Description for smart linkifier option (in dropdown)"
+	},
+	"OPTIONS_AUTHOR_PAGE": {
+		"message": "添加作者页链接至用户信息对话框",
+		"description": "Description for the checkbox deciding whether or not add link to SCP author(member) page to user info dialog"
+	},
+	"OPTIONS_ARTICLE_NAME_IN_TITLE": {
+		"message": "添加主列表的文章标题至相关页面",
+		"description": "Description for the checkbox deciding whether or not add SCP name from the main list to the title (when reading an article)"
+	},
+	"OPTIONS_FORUM_PAGES_HISTORY": {
+		"message": "添加论坛页面至浏览历史",
+		"description": "Description for the checkbox deciding whether or not add forum thread pages to browser history"
+	},
+	"OPTIONS_GLOBAL_SETTINGS_HEADER": {
+		"message": "全球设置",
+		"description": "Label for a list of features used both on wiki and other websites"
+	},
+	"OPTIONS_TOOLTIP_NAMES": {
+		"message": "添加提示信息至SCP链接",
+		"description": "Description for the checkbox deciding whether or not a tooltip with an article name should be shown when user is hovering mouse over a link to SCP"
+	},
+	"OPTIONS_FOOTER_LICENSE": {
+		"message": "源代码以及此插件全部资源在",
+		"description": "First part of the first line of the footer on options page"
+	},
+	"OPTIONS_FOOTER_LICENSE_NAME": {
+		"message": "知识共享署名-相同方式共享 3.0协议（Creative Commons Attribution-ShareAlike 3.0 license）下发布",
+		"description": "Name of the license. Probably shouldn't be translated at all, except, maybe, word license. Full line in english: 'Source code and all resources of this extension are distributed under Creative Commons Attribution-ShareAlike 3.0 license"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION1": {
+		"message": "SCP项目创意，SCP基金会，SCP基金会标志，\"控制。收容。保护。\" 格言属于",
+		"description": "First part of the second line of the footer"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION2": {
+		"message": "SCP创意社区",
+		"description": "Second part of the second line of the footer"
+	},
+	"OPTIONS_FOOTER_ATTRIBUTION3": {
+		"message": "并同样适用于上述协议。",
+		"description": "Third and last part of the second line of the footer. Full line in english: 'Idea of SCP objects, SCP Foundation, SCP Foundation logo, \"Secure. Contain. Protect\" motto were created by SCP creative community and are available under the same license.'"
+	},
+	"OPTIONS_EASTER_EGG": {
+		"message": "Jr. technician F\u2588\u2588\u2588\u2588\u2588\u2588\u2588: \"嘿我说，你确定真的不干脆把这东西[数据删除]了？\"",
+		"description": "A little easter egg on the options page :P"
+	},		
+	"OPTIONS_SAVING_ERROR": {
+		"message": "意外错误: $ERROR$\n设置未保存。",
+		"description": "Text of error that is show if options can't be saved. Ignore $ERROR$. \n is a new string. Don't translate placeholders",
+		"placeholders": {
+			"ERROR": {
+				"content": "$1",
+				"example": "Drive not found"
+			}
+		}
+	}	
+}

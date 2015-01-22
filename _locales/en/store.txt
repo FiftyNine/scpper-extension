@@ -1,0 +1,30 @@
+﻿Handy little thing to improve your SCP browsing experience
+SCPper (read "skipper") adds some features and functionality to SCP Foundation wiki site and its translation branches. It also enhances links to these sites from the outside.
+Behaviour is fully customizable, all features can be turned off.
+
+Wiki features:
+ - Converts plain text (SCP-1234) into links to respective articles.
+ - When reading an article it adds name of the article from the main list to the title.
+ - Adds author page link to user info dialogue.
+ - Overrides default forum behaviour in such way that forum pages are added to browser history and you can navigate through them with Next and Previous buttons.
+
+Global features:
+ - Adds tooltip with the article name to any SCP article link.
+
+Supported SCP projects:
+ - Original SCP Foundation (http://www.scp-wiki.net/)
+ - Russian branch (http://scp-ru.wikidot.com/)
+ - Korean branch (http://scp-kr.wikidot.com/)
+ - Chinese branch (http://www.scp-wiki-cn.org/)
+ - French branch (http://fondationscp.wikidot.com/)
+ - Polish branch (http://www.scp-wiki.pl/)
+ - Spanish branch (http://lafundacionscp.wikidot.com/)
+ - Thai branch (http://scp-th.wikidot.com/)
+ - Japanese branch (http://scp-jp.wikidot.com/)
+
+Some features may not work on some branches due to differences in formatting.
+
+SCPper GitHub page: https://github.com/FiftyNine/SCPper
+
+Source code and all resources of this extension are distributed under Creative Commons Attribution-ShareAlike 3.0 license.
+Idea of SCP objects, SCP Foundation, SCP Foundation logo, "Secure. Contain. Protect" motto were created by SCP creative community at http://www.scp-wiki.net/ and are available under the same license.

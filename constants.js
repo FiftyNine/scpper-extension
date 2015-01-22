@@ -58,7 +58,7 @@ var SCP_WEBSITES = [
 	ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
 	membersPages: null,
 	articleTemplates: [
-		{name: "STRICT", kind: "MAIN", strictRegEx: "SCP-\\d{3,4}", laxRegEx: "(SCP-)?\\d{3,4}", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-seriess", "/scp-series-2", "/scp-series-3"]}]
+		{kind: "MAIN", strictRegEx: "SCP-\\d{3,4}", laxRegEx: "(SCP-)?\\d{3,4}", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-seriess", "/scp-series-2", "/scp-series-3"]}]
 	},	
 	{name: "French",
 	primaryLink: "http://fondationscp.wikidot.com/",

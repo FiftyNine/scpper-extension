@@ -1,0 +1,30 @@
+﻿改善你的SCP阅读体验的便捷小工具
+SCPper（读作“skipper”）为SCP基金会维基及其翻译站点添加了数个功能。它也会自动添加从外部跳转到这些站点的链接。
+它的运行情况可完全自我定制，任何功能都可被关闭。
+
+维基功能：Wiki features:
+ - 将单纯文本内容（如SCP-1234）转化为指向相对应的文章的链接。
+ - 阅读文章时添加主列表处的文章名称至标题处。
+ - 添加作者页链接至用户信息对话框。
+ - 覆盖论坛默认设置，使论坛页面存入浏览历史，可以通过前后按钮便捷翻阅。
+
+全球功能：
+ - 添加含有文章名称的提示信息框至任何SCP文章链接。
+
+支持的SCP站点：
+ - 原SCP基金会 (http://www.scp-wiki.net/)
+ - 俄国分部 (http://scp-ru.wikidot.com/)
+ - 韩国分部 (http://scp-kr.wikidot.com/)
+ - 中国分部 (http://www.scp-wiki-cn.org/)
+ - 法国分部 (http://fondationscp.wikidot.com/)
+ - 波兰分部 (http://www.scp-wiki.pl/)
+ - 西班牙分部 (http://lafundacionscp.wikidot.com/)
+ - 泰国分部 (http://scp-th.wikidot.com/)
+ - 日本分部 (http://scp-jp.wikidot.com/)
+
+由于格式差异，部分功能可能无法适用于某些翻译站点。
+
+SCPper的GitHub页面：https://github.com/FiftyNine/SCPper
+
+源代码以及此插件全部资源在知识共享署名-相同方式共享 3.0协议（Creative Commons Attribution-ShareAlike 3.0 license）下发布。
+SCP项目创意，SCP基金会，SCP基金会标志，“控制。收容。保护。”格言属于SCP创意社区： http://www.scp-wiki.net/ ，并同样适用于上述协议。

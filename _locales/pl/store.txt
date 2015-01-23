@@ -1,0 +1,30 @@
+﻿Przydatny drobiazg, który wzbogaci Twoje wrażenia podczas przeglądania SCP 
+SCPper (czytaj: "skipper") dodaje nowe opcje i funkcjonalność do wiki Fundacji SCP i jej oddziałów zagranicznych. Ponadto poprawia linki do tychże stron z zewnątrz.
+Zachowanie rozszerzenia może być w pełni kontrolowane, a wszystkie jego funkcje można wyłączyć.
+
+Funkcje Wiki:
+ - Konwertuje tekst niesformatowany (SCP-1234) na linki prowadzące do odpowiednich artykułów.
+ - Podczas czytania artykułu dodaje jego nazwę z głównej listy do tytułu.
+ - Dodaje stronę autorską do okna informacji o użytkowniku.
+ - Nadpisuje domyślne zachowanie forum, sprawiając, że strony forum są dodawane do historii przeglądania, a Ty możesz się pomiędzy nimi przemieszczać przy użyciu przycisków Dalej oraz Wstecz.
+
+Funkcjonalności globalne:
+ - Dodaje podpowiedź z nazwą artykułu do każdego linku SCP.
+
+Wspierane projekty SCP:
+ - Oryginalna Fundacja SCP (http://www.scp-wiki.net/)
+ - Oddział rosyjski (http://scp-ru.wikidot.com/)
+ - Oddział koreański (http://scp-kr.wikidot.com/)
+ - Oddział chiński (http://www.scp-wiki-cn.org/)
+ - Oddział francuski (http://fondationscp.wikidot.com/)
+ - Oddział polski (http://www.scp-wiki.pl/)
+ - Oddział hiszpański (http://lafundacionscp.wikidot.com/)
+ - Oddział tajlandzki (http://scp-th.wikidot.com/)
+ - Oddział japoński (http://scp-jp.wikidot.com/)
+
+Niektóre funkcje mogą nie działać na niektórych oddziałach w związku z różnicami formatowania.
+
+Strona GitHub SCPper: https://github.com/FiftyNine/SCPper
+
+Kod źródłowy i wszelkie zasoby tego rozszerzenia są rozpowszechniane zgodnie z licencją Creative Commons Attribution-ShareAlike 3.0.
+Pomysł obiektów SCP, Fundacji SCP, logo Fundacji SCP oraz motto "Zabezpieczać. Przechowywać. Chronić" są dzieła kreatywnej społeczności SCP z http://www.scp-wiki.net/ i także objęte są tą licencją.

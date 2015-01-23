@@ -1,8 +1,3 @@
-var FORUM_THREAD_CONTAINER_POSTS_ID = "thread-container-posts";
-var FORUM_PAGER_CLASS_NAME = "pager";
-var FORUM_PAGE_LINKS_CLASS_NAME = "target";
-var FORUM_POST_CONTENT_ID_TEMPLATE = "\\bpost-content-\\d+\\b";
-
 // Process post's content, linkify text nodes and add linked numbers
 function scpProcessForumPostContent(node, linkedNumbers, template, strict) {
 	if ((node.childNodes.length == 0) && (node.nodeType == Node.TEXT_NODE))
@@ -15,38 +10,28 @@ function scpProcessForumPostContent(node, linkedNumbers, template, strict) {
 		scpAddLinkedNumber(node, linkedNumbers);
 }
 
-// Recursively iterate through all posts on a page and linkify them
-function scpEnumForumPostContentElements(elem, linkedNumbers, template, strict) {
-	if (new RegExp(FORUM_POST_CONTENT_ID_TEMPLATE, "i").test(elem.id))
-		scpProcessForumPostContent(elem, linkedNumbers, template, strict);
-	else
-		for (var i=0; i<elem.children.length; i++)
-			scpEnumForumPostContentElements(elem.children[i], linkedNumbers, template, strict);
-}
-
 // Iterate through all posts on a page and linkify them
 function scpForumProcessPosts() {
 	if (!scpperSettings.useLinkifier)
 		return;
+	var strict = false;		
+	if (scpperSettings.linkifierTemplate == "strict") 		
+		strict = true;			
 	var linkedNumbers = {};
-	var postsContainer = document.getElementById(FORUM_THREAD_CONTAINER_POSTS_ID);
-	if (postsContainer != null) {
-		var strict = false;
-		if (scpperSettings.linkifierTemplate == "strict") 		
-			strict = true;	
-		for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--)
-			scpEnumForumPostContentElements(postsContainer, linkedNumbers, scpWebsite.articleTemplates[i], strict);
-	}
+	var posts = document.querySelectorAll("#thread-container .content[id^=post-content-]");
+	for (var i=0; i<posts.length; i++) 
+		if (/^post-content-\d+$/i.test(posts[i].id)) {			
+			for (var j=scpWebsite.articleTemplates.length-1; j>=0; j--)
+				scpProcessForumPostContent(posts[i], linkedNumbers, scpWebsite.articleTemplates[j], strict);
+		}
 }
 
 // Override handlers on active page switch to use my handlers instead of default
 function scpForumOverridePageHandlers(){
-	var postsContainer = document.getElementById(FORUM_THREAD_CONTAINER_POSTS_ID);
-	if (postsContainer==null) return;
-	var pagers = postsContainer.getElementsByClassName(FORUM_PAGER_CLASS_NAME);
+	var pagers = document.querySelectorAll("div#thread-container-posts div.pager");
 	if (pagers==null) return;
 	for (var i=0; i<pagers.length; i++) {	
-		var pageLinks = pagers[i].getElementsByClassName(FORUM_PAGE_LINKS_CLASS_NAME);
+		var pageLinks = pagers[i].getElementsByClassName("target");
 		for (var j=0; j<pageLinks.length; j++) {
 			var linkElem = pageLinks[j].firstElementChild;
 			if (linkElem.nodeName.toUpperCase()=="A") {

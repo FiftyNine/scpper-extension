@@ -1,4 +1,4 @@
-var DEBUG = false;
+var DEBUG = true;
 
 // Format of last refresh time in storage of SCP names for a site: "SITENAMELastRefreshTime"
 // Format of SCP name in storage: "SITENAMESCP###NAME"
@@ -63,7 +63,7 @@ function identifyScpWebsite(URL) {
 // Check if we're on forum or main wiki
 function checkIfForum() {
 	for (var i=0; i<scpWebsite.linkTemplates.length; i++) {
-		var forumRegEx = new RegExp("\\bhttps?://"+scpWebsite.linkTemplates[i]+"/forum");
+		var forumRegEx = new RegExp("https?://"+scpWebsite.linkTemplates[i]+"/forum");
 		if (forumRegEx.test(document.URL)) {
 			return true;
 		}

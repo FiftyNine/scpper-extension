@@ -90,7 +90,7 @@
 		}
 	},
 	"TRANSLATION_CREDIT": {
-		"message": "Traduction: $TRANSLATORS$",
+		"message": "La traduction en français de cette extension a été effectuée par la $TRANSLATORS$.",
 		"description": "Last line of the options page crediting you for the translation =)",
 		"placeholders": {
 			"TRANSLATORS": {
@@ -100,7 +100,7 @@
 		}
 	},
 	"TRANSLATORS": {
-		"message": "<a href=\"http://fondationscp.wikidot.com\">La Fondation SCP. Branche Francophone.</a>",
+		"message": "<a href=\"http://fondationscp.wikidot.com\">branche Française de traduction des SCP</a>",
 		"description": "List of translators' nicknames divided by commas"
 	}
 }

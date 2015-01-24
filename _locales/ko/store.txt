@@ -1,0 +1,30 @@
+﻿SCP 찾는 경험을 향상시켜줄 유용한 조그만 녀석
+SCPper ("스키퍼"라고도 읽습니다) 는 SCP 재단 위키 사이트와 번역 지부들에게 몇가지 특성과 기능성을 추가합니다. 또한 외부에서부터 이 사이트들의 링크 기능을 향상시키죠.
+전부 커스터마이징 하실 수 있고, 모든 기능은 끌 수 있습니다.
+
+위키 기능:
+ - 일반 텍스트 (SCP-1234)를 해당 글의 링크로 변환합니다.
+ - 글을 읽을 때 메인 목록에서 제목에 글의 이름을 더해줍니다.
+ - 사용자 정보글에 작가 페이지 링크를 추가합니다.Adds author page link to user info dialogue.
+ - 포럼 페이지를 브라우저 기록에 추가하고 이전, 다음 버튼을 눌러 이동할 수 있는 방식으로 기존 포럼의 방식에 덮어씌웁니다.
+
+국제적 기능:
+ - 모든 SCP 글링크에 글 제목과 툴팁을 추가합니다.
+
+지원하는 SCP 프로젝트들 :
+ - SCP 재단 본사 (http://www.scp-wiki.net/)
+ - 러시아 지사 (http://scp-ru.wikidot.com/)
+ - 한국 지사 (http://scp-kr.wikidot.com/)
+ - 중국 지사 (http://www.scp-wiki-cn.org/)
+ - 프랑스 지사 (http://fondationscp.wikidot.com/)
+ - 폴란드 지사 (http://www.scp-wiki.pl/)
+ - 스페인 지사 (http://lafundacionscp.wikidot.com/)
+ - 태국 지사 (http://scp-th.wikidot.com/)
+ - 일본 지사 (http://scp-jp.wikidot.com/)
+
+몇몇 기능은 서식의 차이로 몇몇 지사에서 작동하지 않을 수 있습니다.
+
+SCPper Git허브 페이지: https://github.com/FiftyNine/SCPper
+
+이 확장팩의 소스 코드와 모든 리소스는 크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0 라이선스 아래에 분포됩니다.
+SCP 물체, SCP 재단, SCP 재단 로고의 아이디어와 "확보, 격리, 보안"의 모토는 http://www.scp-wiki.net/의 SCP 창작 커뮤니티에 의해 만들어졌으며 동일한 라이선스 하에 있습니다.

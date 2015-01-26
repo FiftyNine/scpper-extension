@@ -1,7 +1,7 @@
 // Main thing that does all the stuff
 function runSCPper() {
 	DEBUG && chrome.storage.local.getBytesInUse(null, function (bytes) {console.log("Local storage uses "+bytes+" bytes.")});
-	// chrome.storage.local.clear();
+	DEBUG && chrome.storage.local.clear();
 	initScpperSettings();	
 	var tryCount = 0;
 	var interval = setInterval(function() {	

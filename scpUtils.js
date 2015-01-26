@@ -1,4 +1,4 @@
-var DEBUG = true;
+var DEBUG = false;
 
 // Format of last refresh time in storage of SCP names for a site: "SITENAMELastRefreshTime"
 // Format of SCP name in storage: "SITENAMESCP###NAME"
@@ -150,8 +150,8 @@ function fillScpNameCache(website, callback) {
 					}
 					for (var i=0; i<waitingCallbacks[index].callbacks.length; i++)
 						waitingCallbacks[index].callbacks[i]();
-					waitingCallbacks.splice(index, 1);
-					cacheInProgress.splice(index, 1);
+					waitingCallbacks[index] = null;
+					cacheInProgress[index] = null;
 				}
 			});
 		});

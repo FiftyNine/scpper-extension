@@ -86,15 +86,16 @@ function getUserMemberPageLinkFromDoc(doc, userName) {
 function getUserMemberPageLink(userName, callback) {
 	if (!scpWebsite || !scpWebsite.membersPages)
 		return;
-	makeXMLHttpRequest(null, scpWebsite.primaryLink+scpWebsite.membersPages, function(sender, response, success) {
-		if (success) {
-			var doc = document.implementation.createHTMLDocument("");
-			doc.write(response);
-			var memberPage = getUserMemberPageLinkFromDoc(doc, userName);
-			if (memberPage)
-				callback(memberPage);
-		}
-	});
+	for (var i=0; i<scpWebsite.membersPages.length; i++)
+		makeXMLHttpRequest(null, scpWebsite.primaryLink+scpWebsite.membersPages[i], function(sender, response, success) {
+			if (success) {
+				var doc = document.implementation.createHTMLDocument("");
+				doc.write(response);
+				var memberPage = getUserMemberPageLinkFromDoc(doc, userName);
+				if (memberPage)
+					callback(memberPage);
+			}
+		});
 }
 
 // Process user info dialog and add link to the correspondent member page

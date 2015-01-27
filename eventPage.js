@@ -12,9 +12,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
 				newSettings[keys[i]] = scpperDefaultSettings[keys[i]];
 			}
 		// Most people kept using default settings after installation and default changed to "smart" after it was introduced
-		if ((details.reason == "update") && (details.previousVersion < "0.1.1") && (newSettings.linkifierTemplate == "lax")) {
-			newSettings.linkifierTemplate = "smart";
-			needSave = true;
+		if (details.reason == "update") {
+			if ((details.previousVersion < "0.1.1") && (newSettings.linkifierTemplate == "lax")) {
+				newSettings.linkifierTemplate = "smart";
+				needSave = true;
+			}
+			chrome.storage.local.clear();
 		}
 		if (needSave)
 			chrome.storage.sync.set({"scpperSettings": newSettings});

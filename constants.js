@@ -152,6 +152,7 @@ var scpperDefaultSettings = {
     linkifierTemplate: "smart",
     addAuthorPage: true,
     addArticleName: true,
+    addPageInfo: true,
     overrideForum: true,
     linkTooltips: true
 };

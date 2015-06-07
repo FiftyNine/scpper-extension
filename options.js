@@ -25,6 +25,9 @@ function refreshControls() {
     var articleName = document.getElementById("article-name-title");
     articleName.disabled = false;
     articleName.checked = scpperSettings.addArticleName;
+    var pageInfo = document.getElementById("page-info-footer");
+    pageInfo.disabled = false;
+    pageInfo.checked = scpperSettings.addPageInfo;    
     var overrideForum = document.getElementById("override-forum");
     overrideForum.disabled = false;
     overrideForum.checked = scpperSettings.overrideForum;
@@ -79,6 +82,7 @@ function initOptions() {
     document.getElementById("linkifier-template").addEventListener("click", linkifierTemplateClick);
     document.getElementById("author-page-link").addEventListener("click", authorPageClick);
     document.getElementById("article-name-title").addEventListener("click", articleNameClick);
+    document.getElementById("page-info-footer").addEventListener("click", pageInfoClick);
     document.getElementById("override-forum").addEventListener("click", overrideForumClick);
     document.getElementById("link-tooltips").addEventListener("click", linkTooltipsClick);
     // Initialize settings
@@ -122,6 +126,10 @@ function authorPageClick() {
 
 function articleNameClick() {
     setOptionAndSave("addArticleName", this.checked);
+}
+
+function pageInfoClick() {
+    setOptionAndSave("addPageInfo", this.checked);
 }
 
 function overrideForumClick() {

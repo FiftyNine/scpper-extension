@@ -9,6 +9,7 @@ function processWiki() {
         processForumPage();
     else {
         processWikiPage();
+        retrievePageInfo();
     }
     overrideUserInfoLinks();
     overrideWikiBottomButtons();

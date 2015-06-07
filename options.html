@@ -7,78 +7,78 @@
       body {
       margin: 0px;
       background-repeat: no-repeat;
-      background-attachment: fixed;		
+      background-attachment: fixed;        
       font-family: verdana,arial;
       font-size: 0.9em;
       }
       h1,h2 {
       margin: 0px;
-      padding-top: 10px;					
+      padding-top: 10px;                    
       padding-left: 10px;
       color: rgb(153, 0, 17);
       font-size: 150%;
-      font-weight: normal;		
+      font-weight: normal;        
       }
-	  h1 {
-	    font-size: 200%;
-		vertical-align: middle;
-	  }
+      h1 {
+        font-size: 200%;
+        vertical-align: middle;
+      }
       h2.first {
-      padding-top: 20px;			
+      padding-top: 20px;            
       }
       div.settings {
       background: linear-gradient(#eee, white);
       }
-      p {		
+      p {        
       margin: 5px;
       }
-	  p#status {
-	    text-indent: 10px;
-		font-style: italic;
-	  }
-	  p.footnote {
-		font-size: 0.75em;
-	  }
-	  a {
-		color: #b01;
-		text-decoration: none;
-		background: transparent;
-	  } 
-	  a:hover {
-		text-decoration: underline;
-		background: transparent;
-	  }
+      p#status {
+        text-indent: 10px;
+        font-style: italic;
+      }
+      p.footnote {
+        font-size: 0.75em;
+      }
+      a {
+        color: #b01;
+        text-decoration: none;
+        background: transparent;
+      } 
+      a:hover {
+        text-decoration: underline;
+        background: transparent;
+      }
    </style>
-	<script src="constants.js"></script>
+    <script src="constants.js"></script>
     <script src="options.js"></script>
   </head>
   <body>
     <div class="settings">
-	  <h1>
-	    <table>
-		  <tbody>
-		    <tr>
-			  <td>
-	            <img src="SCP-Logo-signature.png"/> 
-			  </td>
-			  <td/>
-			  <td>
-		        __MSG_OPTIONS_HEADER__
-			  </td>
-			</tr>
-		  </tbody>
-		</table>
-	  </h1>
+      <h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <img src="SCP-Logo-signature.png"/> 
+              </td>
+              <td/>
+              <td>
+                __MSG_OPTIONS_HEADER__
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </h1>
       <h2 class="first">__MSG_OPTIONS_WIKI_SETTINGS_HEADER__</h2>
       <p>
         <label>
         <input type="checkbox" id="use-linkifier">
         __MSG_OPTIONS_USE_LINKIFIER__
         </label>
-        <select id="linkifier-template">		  
+        <select id="linkifier-template">          
           <option value="strict">__MSG_OPTIONS_LINKIFIER_STRICT_TEMPLATE__</option>
           <option value="lax">__MSG_OPTIONS_LINKIFIER_LAX_TEMPLATE__</option>
-		  <option value="smart">__MSG_OPTIONS_LINKIFIER_SMART_TEMPLATE__</option>
+          <option value="smart">__MSG_OPTIONS_LINKIFIER_SMART_TEMPLATE__</option>
         </select>
       </p>
       <p>
@@ -95,6 +95,12 @@
       </p>
       <p>
         <label>
+        <input type="checkbox" id="page-info-footer">
+        __MSG_OPTIONS_PAGE_INFO_IN_FOOTER__
+        </label>
+      </p>      
+      <p>
+        <label>
         <input type="checkbox" id="override-forum">
         __MSG_OPTIONS_FORUM_PAGES_HISTORY__
         </label>
@@ -106,14 +112,14 @@
         __MSG_OPTIONS_TOOLTIP_NAMES__
         </label>
       </p>
-	  <p id="status">
-	  </p>
-	  <hr>
-	  <p class="footnote">
-	  __MSG_OPTIONS_FOOTER_LICENSE__ <a href="https://creativecommons.org/licenses/by-sa/3.0/au/legalcode">__MSG_OPTIONS_FOOTER_LICENSE_NAME__</a>.
-	  <br>
-	  __MSG_OPTIONS_FOOTER_ATTRIBUTION1__ <a href="http://www.scp-wiki.net/">__MSG_OPTIONS_FOOTER_ATTRIBUTION2__</a> __MSG_OPTIONS_FOOTER_ATTRIBUTION3__
-	  </p>
+      <p id="status">
+      </p>
+      <hr>
+      <p class="footnote">
+      __MSG_OPTIONS_FOOTER_LICENSE__ <a href="https://creativecommons.org/licenses/by-sa/3.0/au/legalcode">__MSG_OPTIONS_FOOTER_LICENSE_NAME__</a>.
+      <br>
+      __MSG_OPTIONS_FOOTER_ATTRIBUTION1__ <a href="http://www.scp-wiki.net/">__MSG_OPTIONS_FOOTER_ATTRIBUTION2__</a> __MSG_OPTIONS_FOOTER_ATTRIBUTION3__
+      </p>
     </div>
   </body>
 </html>

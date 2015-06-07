@@ -178,7 +178,7 @@ function overrideWikiBottomButtons() {
     overrideWikiBottomButton("pagerate-button", "scpperPageRateButtonClick();");
 }
 
-// Override onlick handlers for all userInfo links in the current document
+// Override onclick handlers for all userInfo links in the current document
 function overrideUserInfoLinks() {
     if (!scpperSettings.addAuthorPage)
         return;
@@ -198,6 +198,80 @@ function overrideUserInfoLinks() {
             }
         }
     }
+}
+
+function makeUserLink(user) {
+    if (Number(user.deleted))
+        return user.user;
+    else
+        return "<a href=\"http://www.wikidot.com/user:info/"+user.userName
+            +"\" onclick=\"scpperUserInfoDialog("+user.userId+",&quot;"+user.userName+"&quot;); return false;\">"+user.user+"</a>";
+}
+
+// Retrieve page data from SCPper DB and add it to the page
+function retrievePageInfo() {
+    if (!scpperSettings.addPageInfo)
+        return;
+    var pageIdRegex = /WIKIREQUEST\.info\.pageId = \d+;/;
+    var temp = pageIdRegex.exec(document.head.innerHTML);
+    if (!temp)
+        return;
+    var pageId = /\d+/.exec(temp[0])[0];
+    if (!pageId)
+        return;    
+    makeXMLHttpRequest(null, "http://www.scpper.com/extension/PageInfo.php?id="+pageId, 
+        function (sender, response, success) {            
+            if (!success || !scpWebsite || scpWebsite.name != "English") 
+                return;
+            var result = JSON.parse(response);
+            var info = document.querySelector("div#page-info");
+            if (!result || !info || result.status != 'ok')
+                return;
+            result = result.data;
+            var newInfo = document.createElement("div");
+            newInfo.id = "scpper-page-info";
+            var authors = [];
+            var rewriters = [];
+            var translators = [];
+            console.log(response);
+            for (var i=0; i<result.authors.length; i++) {
+                var userlink = makeUserLink(result.authors[i]);
+                switch (result.authors[i].role) {
+                    case 'Author': 
+                        authors.push(userlink);
+                        break;
+                    case 'Rewrite author': 
+                        rewriters.push(userlink);
+                        break;
+                    case 'Translator': 
+                        translators.push(userlink);
+                        break;
+                }
+            }
+            var authorText = "";
+            var rewriterText = "";
+            var translatorText = "";
+            if (result.status == "Original") {
+                if (authors.length>0)
+                    authorText = "Written by "+authors.join(", ")+". ";
+            } else {
+                var original = "<a href=\""+result.original+"\">Original</a>";
+                if (authors.length>0)
+                    authorText = original+" by "+authors.join(", ")+". ";
+                else
+                    authorText = original+".";
+                if (translators.length>0) 
+                    translatorText = "Translated by "+translators.join(", ")+". ";
+            }
+            if (rewriters.length>0) 
+                rewriterText = "Rewritten by "+rewriters.join(", ")+". ";
+            var postingDate = new Date(Number(result.date)*1000);
+            var options = { day: 'numeric', month: 'short', year: 'numeric'};
+            var createdText = "Posted on "+postingDate.toLocaleString('default', options)+".";
+            newInfo.innerHTML = authorText+rewriterText+translatorText+createdText;
+            info.insertBefore(newInfo, info.firstChild);
+        }
+    );
 }
 
 // Override history module update list button handler

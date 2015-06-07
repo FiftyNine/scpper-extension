@@ -43,6 +43,10 @@
 		"message": "Add name of article from main list to title",
 		"description": "Description for the checkbox deciding whether or not add SCP name from the main list to the title (when reading an article)"
 	},
+	"OPTIONS_PAGE_INFO_IN_FOOTER": {
+		"message": "Show authors and page information in footer",
+		"description": "Description for the checkbox deciding whether or not add additional page information to footer (when reading an article)"
+	},
 	"OPTIONS_FORUM_PAGES_HISTORY": {
 		"message": "Add forum pages to browser history",
 		"description": "Description for the checkbox deciding whether or not add forum thread pages to browser history"

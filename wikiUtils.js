@@ -219,7 +219,7 @@ function retrievePageInfo() {
     var pageId = /\d+/.exec(temp[0])[0];
     if (!pageId)
         return;    
-    makeXMLHttpRequest(null, "http://www.scpper.com/extension/PageInfo.php?id="+pageId, 
+    makeXMLHttpRequest(null, "http://db.scpper.com/extension-page-info?pageId="+pageId, 
         function (sender, response, success) {            
             if (!success || !scpWebsite || scpWebsite.name != "English") 
                 return;

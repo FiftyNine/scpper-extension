@@ -143,7 +143,21 @@ var SCP_WEBSITES = [
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-JP)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-JP)?-EX", numberRegEx: "\\d{3,4}(-JP)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex", "/scp-jp-ex"]},
         {kind: "D", strictRegEx: "SCP-\\d{3,4}(-JP)?-D", laxRegEx: "(SCP-)?\\d{3,4}(-JP)?-D", numberRegEx: "\\d{3,4}(-JP)?-D", urlTemplate: "/decomm:SCP-@", listPages: ["/decommissioned-scps", "/decommissioned-scps-jp"]},
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-jp"]}]
-    }                
+    },
+    {name: "German",
+    primaryLink: "http://scp-wiki-de.wikidot.com",
+    linkTemplates: ["(www\\.)?scp-wiki-de\\.wikidot\\.com"],
+    checkTags: false,
+    permittedTags: [],
+    ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+    membersPages: ["/members-pages"],
+    articleTemplates: [
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(DE|ARC|EX|D|J|KO))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3"]},
+        {kind: "DE", strictRegEx: "SCP-\\d{3,4}-DE(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-DE(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-DE", urlTemplate: "/SCP-@", listPages: ["/scp-de"]},
+        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-DE)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-DE)?-ARC", numberRegEx: "\\d{3,4}(-DE)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps"]},
+        {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-DE)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-DE)?-EX", numberRegEx: "\\d{3,4}(-DE)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex"]},
+        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
+    }
 ];
 
 // Default extensions settings used on first launch or after updated to a newer version

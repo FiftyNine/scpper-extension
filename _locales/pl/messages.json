@@ -100,7 +100,7 @@
 		}
 	},
 	"TRANSLATORS": {
-		"message": "<a href=\"http://scp-wiki.pl/\">Polska Filia SCP</a>",
+		"message": "<a href=\"http://scp-wiki.net.pl/\">Polska Filia SCP</a>",
 		"description": "List of translators' nicknames divided by commas"
 	}
 }

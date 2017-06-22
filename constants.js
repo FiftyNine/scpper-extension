@@ -1,4 +1,4 @@
-var MAX_SCP_NUMBER = 3000;
+var MAX_SCP_NUMBER = 4000;
 var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24; // Milliseconds in a day
 
 // List of all supported SCP websites and their properties
@@ -13,7 +13,7 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],    
     membersPages: ["/members-pages"],
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3"]},        
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
         {kind: "ARC", strictRegEx: "SCP-\\d{3,4}-ARC", laxRegEx: "(SCP-)?\\d{3,4}-ARC", numberRegEx: "\\d{3,4}-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}-EX", laxRegEx: "(SCP-)?\\d{3,4}-EX", numberRegEx: "\\d{3,4}-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex"]},
 //        {kind: "D", strictRegEx: "SCP-\\d{3,4}-D", laxRegEx: "(SCP-)?\\d{3,4}-D", numberRegEx: "\\d{3,4}-D", urlTemplate: "/decomm:SCP-@", listPages: ["/decommissioned-scps"]},
@@ -27,7 +27,7 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK", "RIMG"],
     membersPages: null,
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(RU|ARC|V|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(RU|ARC|V|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-list", "/scp-list-2", "/scp-list-3"]},
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(RU|ARC|V|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(RU|ARC|V|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-list", "/scp-list-2", "/scp-list-3", "/scp-list-4"]},
         {kind: "RU", strictRegEx: "SCP-\\d{3,4}-RU(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-RU(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-RU", urlTemplate: "/SCP-@", listPages: ["/scp-list-ru"]},
         {kind: "FR", strictRegEx: "SCP-\\d{3,4}-FR(-J)?", laxRegEx: "(SCP-)?\\d{3,4}-FR(-J)?", numberRegEx: "\\d{3,4}-FR(-J)?", urlTemplate: "/SCP-@", listPages: ["/scp-list-fr"]},
         {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP(-J)?", laxRegEx: "(SCP-)?\\d{3,4}-JP(-J)?", numberRegEx: "\\d{3,4}-JP(-J)?", urlTemplate: "/SCP-@", listPages: ["/scp-list-jp"]},
@@ -47,7 +47,7 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
     membersPages: ["/members-pages-ko", "/members-pages"],
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(KO|ARC|EX|D|J|JP))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(KO|ARC|EX|D|J|JP))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3"]},        
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(KO|ARC|EX|D|J|JP))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(KO|ARC|EX|D|J|JP))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},        
         {kind: "KO", strictRegEx: "SCP-\\d{3,4}-KO(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-KO(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-KO", urlTemplate: "/SCP-@", listPages: ["/scp-series-ko"]},
         {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP(-J)?", laxRegEx: "(SCP-)?\\d{3,4}-JP(-J)?", numberRegEx: "\\d{3,4}-JP(-J)?", urlTemplate: "/SCP-@", listPages: ["/scp-series-jp"]},
         {kind: "CN", strictRegEx: "SCP-CN-\\d{3,4}", laxRegEx: "(SCP-)?CN-\\d{3,4}", numberRegEx: "CN-\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series-cn"]},
@@ -57,14 +57,19 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-ko"]}]
     },    
     {name: "Chinese",
-    primaryLink: "http://www.scp-wiki-cn.org",
-    linkTemplates: ["(www\\.)?scp-wiki-cn\\.org"],
+    primaryLink: "http://scp-wiki-cn.wikidot.com",
+    linkTemplates: ["(www\\.)?scp-wiki-cn\\.wikidot\\.com"],
     checkTags: false,
     permittedTags: [],
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
-    membersPages: null,
+    membersPages: ["members-pages", "members-pages-cn"],
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}", laxRegEx: "(SCP-)?\\d{3,4}", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-seriess", "/scp-series-2", "/scp-series-3"]}]
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ARC|EX|D|J|CN))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ARC|EX|D|J|CN))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
+        {kind: "CN", strictRegEx: "SCP-\\d{3,4}-CN(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-CN(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-CN", urlTemplate: "/SCP-@", listPages: ["/scp-series-cn"]},
+        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-CN)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-CN)?-ARC", numberRegEx: "\\d{3,4}(-CN)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps"]},
+        {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-CN)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-CN)?-EX", numberRegEx: "\\d{3,4}(-CN)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex"]},        
+        {kind: "D", strictRegEx: "SCP-\\d{3,4}(-CN)?-D", laxRegEx: "(SCP-)?\\d{3,4}(-CN)?-D", numberRegEx: "\\d{3,4}(-CN)?-D", urlTemplate: "/SCP-@", listPages: ["/decommissioned-scps"]},
+        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-cn"]}]
     },    
     {name: "French",
     primaryLink: "http://fondationscp.wikidot.com",
@@ -74,18 +79,18 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
     membersPages: null,
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(FR|ARC|EX|D|J|JP))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(FR|ARC|EX|D|J|JP))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/001-999", "/1000-1999", "/2000-2999"]},
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(FR|ARC|EX|D|J|JP))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(FR|ARC|EX|D|J|JP))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
         {kind: "FR", strictRegEx: "SCP-\\d{3,4}-FR(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-FR(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-FR", urlTemplate: "/SCP-@", listPages: ["/liste-francaise"]},
         {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP", laxRegEx: "(SCP-)?\\d{3,4}-JP", numberRegEx: "\\d{3,4}-JP", urlTemplate: "/SCP-@", listPages: ["/liste-japonaise"]},
         {kind: "ES", strictRegEx: "SCP-\\d{3,4}-ES", laxRegEx: "(SCP-)?\\d{3,4}-ES", numberRegEx: "\\d{3,4}-ES", urlTemplate: "/SCP-@", listPages: ["/liste-espagnole"]},
-        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-FR)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-FR)?-ARC", numberRegEx: "\\d{3,4}(-FR)?-ARC", urlTemplate: "/SCP-@", listPages: ["/scp-archives"]},        
+        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-FR)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-FR)?-ARC", numberRegEx: "\\d{3,4}(-FR)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-FR)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-FR)?-EX", numberRegEx: "\\d{3,4}(-FR)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex"]},
         {kind: "D", strictRegEx: "SCP-\\d{3,4}(-FR)?-D", laxRegEx: "(SCP-)?\\d{3,4}(-FR)?-D", numberRegEx: "\\d{3,4}(-FR)?-D", urlTemplate: "/SCP-@", listPages: ["/scp-desarme"]},
-        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-humoristique"]}]
+        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/scps-humoristique-francais"]}]
     },    
     {name: "Polish",
-    primaryLink: "http://scp-wiki.pl",
-    linkTemplates: ["(www\\.)?scp-wiki\\.pl", "(www\\.)?scp-pl\\.wikidot\\.com"],
+    primaryLink: "http://scp-wiki.net.pl",
+    linkTemplates: ["(www\\.)?scp-wiki\\.net\\.pl", "(www\\.)?scp-pl\\.wikidot\\.com"],
     checkTags: false,
     permittedTags: ["opowieść", "scp"],
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
@@ -106,7 +111,7 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
     membersPages: null,
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ES|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ES|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-i", "/serie-scp-ii", "/serie-scp-iii"]},
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ES|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ES|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-i", "/serie-scp-ii", "/serie-scp-iii", "/serie-scp-iv"]},
         {kind: "ES", strictRegEx: "SCP-ES-\\d{3,4}(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?ES-\\d{3,4}(?!-(ARC|EX|D|J))", numberRegEx: "ES-\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-es"]},
         {kind: "ARC", strictRegEx: "SCP-(ES-)?\\d{3,4}-ARC", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-ARC", numberRegEx: "(ES-)?\\d{3,4}-ARC", urlTemplate: "/SCP-@", listPages: ["/scps-archivados"]},
         {kind: "EX", strictRegEx: "SCP-(ES-)?\\d{3,4}-EX", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-EX", numberRegEx: "(ES-)?\\d{3,4}-EX", urlTemplate: "/SCP-@", listPages: ["/scps-exs"]},
@@ -136,8 +141,8 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
     membersPages: ["/members-pages-jp", "/members-pages"],
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3"]},
-        {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-JP(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-JP", urlTemplate: "/SCP-@", listPages: ["/scp-series-jp"]},
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
+        {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-JP(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-JP", urlTemplate: "/SCP-@", listPages: ["/scp-series-jp", "/scp-series-jp-2"]},
         {kind: "KO", strictRegEx: "SCP-\\d{3,4}-KO", laxRegEx: "(SCP-)?\\d{3,4}-KO", numberRegEx: "\\d{3,4}-KO", urlTemplate: "/SCP-@", listPages: ["/scp-series-ko"]},
         {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-JP)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-JP)?-ARC", numberRegEx: "\\d{3,4}(-JP)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps", "/archived-scps-jp"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-JP)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-JP)?-EX", numberRegEx: "\\d{3,4}(-JP)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex", "/scp-jp-ex"]},
@@ -152,12 +157,26 @@ var SCP_WEBSITES = [
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
     membersPages: ["/members-pages"],
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(DE|ARC|EX|D|J|KO))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3"]},
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(DE|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(DE|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
         {kind: "DE", strictRegEx: "SCP-\\d{3,4}-DE(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-DE(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-DE", urlTemplate: "/SCP-@", listPages: ["/scp-de"]},
         {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-DE)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-DE)?-ARC", numberRegEx: "\\d{3,4}(-DE)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-DE)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-DE)?-EX", numberRegEx: "\\d{3,4}(-DE)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex"]},
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
-    }
+    },
+    {name: "Italian",
+    primaryLink: "http://fondazionescp.wikidot.com",
+    linkTemplates: ["(www\\.)?fondazionescp\\.wikidot\\.com"],
+    checkTags: false,
+    permittedTags: [],
+    ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+    membersPages: null,
+    articleTemplates: [
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(IT|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(IT|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-serie-i-001-999", "/scp-serie-ii-1000-1999", "/scp-serie-iii-2000-2999"]},
+        {kind: "IT", strictRegEx: "SCP-\\d{3,4}-IT(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-IT(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-IT", urlTemplate: "/SCP-@", listPages: ["/scp-it-serie-i"]},
+        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-IT)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-IT)?-ARC", numberRegEx: "\\d{3,4}(-IT)?-ARC", urlTemplate: "/SCP-@", listPages: ["/scp-archiviati"]},
+        {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-IT)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-IT)?-EX", numberRegEx: "\\d{3,4}(-IT)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-risolti"]},
+        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-scherzo"]}]
+    }    
 ];
 
 // Default extensions settings used on first launch or after updated to a newer version

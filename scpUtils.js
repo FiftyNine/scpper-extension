@@ -53,7 +53,7 @@ function injectScript(scriptText) {
 function identifyScpWebsite(URL) {
     for (var i=0; i<SCP_WEBSITES.length; i++)
         for (var j=0; j<SCP_WEBSITES[i].linkTemplates.length; j++) {
-            var linkRegEx = new RegExp("\\bhttps?://"+SCP_WEBSITES[i].linkTemplates[j]);
+            var linkRegEx = new RegExp("\\bhttps?://"+SCP_WEBSITES[i].linkTemplates[j]+"[$/]");
             if (linkRegEx.test(URL)) {
                 return SCP_WEBSITES[i];
             }

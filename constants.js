@@ -176,7 +176,21 @@ var SCP_WEBSITES = [
         {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-IT)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-IT)?-ARC", numberRegEx: "\\d{3,4}(-IT)?-ARC", urlTemplate: "/SCP-@", listPages: ["/scp-archiviati"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-IT)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-IT)?-EX", numberRegEx: "\\d{3,4}(-IT)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-risolti"]},
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-scherzo"]}]
-    }    
+    },
+    {name: "Ukrainian",
+    primaryLink: "http://scp-ukrainian.wikidot.com",
+    linkTemplates: ["(www\\.)?scp-ukrainian\\.wikidot\\.com"],
+    checkTags: false,
+    permittedTags: [],
+    ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+    membersPages: null,
+    articleTemplates: [
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(UA|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(UA|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
+        {kind: "UA", strictRegEx: "SCP-\\d{3,4}-UA(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-UA(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-UA", urlTemplate: "/SCP-@", listPages: ["/scp-series-ua"]},
+        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-UA)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-UA)?-ARC", numberRegEx: "\\d{3,4}(-UA)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archive"]},
+        {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-UA)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-UA)?-EX", numberRegEx: "\\d{3,4}(-UA)?-EX", urlTemplate: "/SCP-@", listPages: ["/explained-list"]},
+        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-list-j"]}]
+    }
 ];
 
 // Default extensions settings used on first launch or after updated to a newer version

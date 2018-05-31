@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.2.1.3",
+  "version": "0.2.1.4",
   "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
 	"128": "SCP-logo-128.png",
@@ -30,7 +30,8 @@
 			"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*",
                         "*://scp-wiki-de.wikidot.com/*",
                         "*://fondazionescp.wikidot.com/*",
-                        "*://scp-ukrainian.wikidot.com/*"
+                        "*://scp-ukrainian.wikidot.com/*",
+                        "*://scp-pt-br.wikidot.com/*"
 		],
         "js": ["constants.js",
 		    "scpUtils.js", "linkEnhancer.js",
@@ -53,7 +54,8 @@
 			"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*",
                         "*://scp-wiki-de.wikidot.com/*",
                         "*://fondazionescp.wikidot.com/*",
-                        "*://scp-ukrainian.wikidot.com/*"
+                        "*://scp-ukrainian.wikidot.com/*",
+                        "*://scp-pt-br.wikidot.com/*"
 		]
   },
   "web_accessible_resources": [
@@ -72,7 +74,8 @@
 	"*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*",
         "*://scp-wiki-de.wikidot.com/*",
         "*://fondazionescp.wikidot.com/*",
-        "*://scp-ukrainian.wikidot.com/*"
+        "*://scp-ukrainian.wikidot.com/*",
+        "*://scp-pt-br.wikidot.com/*"
   ],
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlqyT7a4GyVofLYIrkTp/v61fhDAaVsPgWY4Go/TNBAfvuOOyrNmblHBKxCiahhwr20Gjb6Py9AFOKIHI9xhUnDzNzFXtXj4yV4EVn7A/6ojxpix5KkSu2+7w0smgv2RlQdcZ2TAEfWOPJhctLkIwp2DrwYeVI5HdeJ/bE1WSsGJEiXKmdxFQGJYc3n5uvZoRSz65UV3AuZmrgr7cBk+AKnakpdsd0r375CbLPu+bBEGfu2u2hatReUraPot+3ocdQox0dJB6dQ7TyjckUGFQKrr8MAmq6TtK1ihvHwgTB72Jk+MxkmlDdye77U8mJcXS6MZb+WEAgvmdCmDEisAXTQIDAQAB"
 }

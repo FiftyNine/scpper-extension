@@ -190,7 +190,21 @@ var SCP_WEBSITES = [
         {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-UA)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-UA)?-ARC", numberRegEx: "\\d{3,4}(-UA)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archive"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-UA)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-UA)?-EX", numberRegEx: "\\d{3,4}(-UA)?-EX", urlTemplate: "/SCP-@", listPages: ["/explained-list"]},
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-list-j"]}]
-    }
+    },
+    {name: "Portuguese",
+    primaryLink: "http://scp-pt-br.wikidot.com",
+    linkTemplates: ["(www\\.)?scp-pt-br\\.wikidot\\.com"],
+    checkTags: false,
+    permittedTags: [],
+    ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
+    membersPages: ["/pessoal"],
+    articleTemplates: [
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(PT|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(PT|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4"]},
+        {kind: "PT", strictRegEx: "SCP-\\d{3,4}-PT(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-PT(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-PT", urlTemplate: "/SCP-@", listPages: ["/series-1-pt"]},
+        {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-PT)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-PT)?-ARC", numberRegEx: "\\d{3,4}(-PT)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps"]},
+        {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-PT)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-PT)?-EX", numberRegEx: "\\d{3,4}(-PT)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex"]},
+        {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
+    }    
 ];
 
 // Default extensions settings used on first launch or after updated to a newer version

@@ -125,3 +125,23 @@ function scpperForumLoadPostOverride(post_id) {
         {ignoreCodeZero: true}
     );
 }
+
+// Override a button interacting with action area
+function overrideWikiBottomButton(id, onclick) {
+    // This button is handled somewhere deep in the wikidot core, so we just swap it with our own button and our own handler    
+    var button = document.getElementById(id);
+    if (!button || (button.style.display == "none"))
+        return;
+    var myButton = button.cloneNode(true);
+    myButton.id = "scpper-"+id;
+    button.parentElement.insertBefore(myButton, button);
+    button.style.display = "none";
+    myButton.setAttribute("onclick", onclick);
+    // button.setAttribute("onclick", onclick);
+    var tip = document.getElementById(myButton.id+"hovertip");
+    if (tip)
+        OZONE.dialog.hovertip.makeTip(myButton, {context: tip, delay: 700, valign: "center"});
+}
+
+overrideWikiBottomButton("history-button", "scpperHistoryButtonClick();");
+overrideWikiBottomButton("pagerate-button", "scpperPageRateButtonClick();");

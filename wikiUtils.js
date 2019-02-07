@@ -151,33 +151,6 @@ function overrideElementHandler(elem, tempId, event, handler) {
     }                    
 }
 
-// Override a button interacting with action area
-function overrideWikiBottomButton(id, onclick) {
-    // This button is handled somewhere deep in the wikidot core, so we just swap it with our own button and our own handler    
-    var button = document.getElementById(id);
-    if (!button || (button.style.display == "none"))
-        return;
-    var myButton = button.cloneNode(true);
-    myButton.id = "scpper-"+id;
-    button.parentElement.insertBefore(myButton, button);
-    button.style.display = "none";
-    myButton.setAttribute("onclick", onclick);
-    injectScript(
-        'function initScpperBottomButton(buttonId) {'+
-        'var button = document.getElementById(buttonId);'+
-        'var tip = document.getElementById(buttonId+"hovertip");'+
-        'if (tip && button)'+
-        '    OZONE.dialog.hovertip.makeTip(button, {context: tip, delay: 700, valign: "center"});'+
-        '}'+
-        'initScpperBottomButton("'+myButton.id+'");');
-}
-
-// Override buttons interacting with action area
-function overrideWikiBottomButtons() {
-    overrideWikiBottomButton("history-button", "scpperHistoryButtonClick();");
-    overrideWikiBottomButton("pagerate-button", "scpperPageRateButtonClick();");
-}
-
 // Override onclick handlers for all userInfo links in the current document
 function overrideUserInfoLinks() {
     if (!scpperSettings.addAuthorPage)

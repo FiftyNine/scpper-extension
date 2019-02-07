@@ -12,7 +12,7 @@ function processWiki() {
         retrievePageInfo();
     }
     overrideUserInfoLinks();
-    overrideWikiBottomButtons();
+    // overrideWikiBottomButtons();
     return true;
 }
 

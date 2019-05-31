@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.2.1.6",
+  "version": "0.2.1.9",
   "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
-	"128": "SCP-logo-128.png",
-	"48": "SCP-logo-48.png",
-	"16": "SCP-logo-16.png"
+	"128": "scp-logo-128.png",
+	"48": "scp-logo-48.png",
+	"16": "scp-logo-16.png"
   },
   "author": "Alexander \"FiftyNine\" Krivopalov",
   "default_locale": "en",
@@ -59,6 +59,7 @@
 		]
   },
   "web_accessible_resources": [
+        "constants.js",
 	"scpEventOverrides.js"
   ],
   "permissions": [

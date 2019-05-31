@@ -1,5 +1,6 @@
 var MAX_SCP_NUMBER = 4000;
 var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24; // Milliseconds in a day
+var SCPPER_EXTENSION_ID = "cpebggobaenfndpoddkdindknnpbjdfc";
 
 // List of all supported SCP websites and their properties
 // Names must be unique!

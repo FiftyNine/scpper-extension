@@ -4,6 +4,7 @@
 function processWiki() {
     if (scpWebsite==null)
         return false;
+    injectExtensionScript("constants.js");
     injectExtensionScript("scpEventOverrides.js");
     if (checkIfForum())
         processForumPage();
@@ -20,7 +21,7 @@ function processWiki() {
 chrome.runtime.onMessage.addListener(
     function(message, sender, sendResponse) {
         if (message.text == "USER_INFO_DIALOG_INTERNAL")
-            processUserInfoDialog(message.userName)
+            processUserInfoDialog(message.userName, message.userId)
         else if (message.text == "HISTORY_MODULE_LOADED_INTERNAL")
             historyModuleLoaded()
         else if (message.text == "ACTION_AREA_UPDATED_INTERNAL") {

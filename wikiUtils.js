@@ -99,15 +99,26 @@ function getUserMemberPageLink(userName, callback) {
 }
 
 // Process user info dialog and add link to the correspondent member page
-function processUserInfoDialog(userName) {
+function processUserInfoDialog(userName, userId) {
+    var dialogElem = document.getElementById("odialog-container");    
+    if (!dialogElem || (dialogElem.childNodes.length == 0))
+        return;
+    var tableElem = dialogElem.querySelector("div.content.modal-body table");
+    if (!tableElem)
+        return;
+    // Add Scpper profile
+    var linkElem = document.createElement("a");
+    linkElem.innerText = userName;
+    linkElem.setAttribute("href", "http://scpper.com/user/"+userId);
+    var row = tableElem.insertRow(-1);
+    var head = row.insertCell(0);
+    head.innerHTML = "<b>Scpper profile</b>";
+    var body = row.insertCell(1);
+    body.appendChild(linkElem);        
     if (!scpperSettings.addAuthorPage)
         return;
-    getUserMemberPageLink(userName, function(memberPage) {
-        var dialogElem = document.getElementById("odialog-container");    
-        if (!dialogElem || (dialogElem.childNodes.length == 0) || !memberPage)
-            return;
-        var tableElem = dialogElem.querySelector("div.content.modal-body table");
-        if (!tableElem)
+    getUserMemberPageLink(userName, function(memberPage) {        
+        if (!memberPage)
             return;
         var linkElem = document.createElement("a");
         linkElem.innerText = memberPage.text;
@@ -188,13 +199,16 @@ function retrievePageInfo() {
     var pageIdRegex = /WIKIREQUEST\.info\.pageId = \d+;/;
     var temp = pageIdRegex.exec(document.head.innerHTML);
     if (!temp)
-        return;
+        return;    
     var pageId = /\d+/.exec(temp[0])[0];
     if (!pageId)
-        return;    
-    makeXMLHttpRequest(null, "http://db.scpper.com/extension-page-info?pageId="+pageId, 
-        function (sender, response, success) {            
-            if (!success || !scpWebsite || scpWebsite.name != "English") 
+        return;     
+    chrome.runtime.sendMessage(
+        SCPPER_EXTENSION_ID,
+        {contentScriptQuery: "pageInfo", pageId: pageId},
+        null,    
+        function (response) {            
+            if (!scpWebsite) 
                 return;
             var result = JSON.parse(response);
             var info = document.querySelector("div#page-info");

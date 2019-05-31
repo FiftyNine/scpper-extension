@@ -2,7 +2,7 @@
 This module contains functions that are used by SCPper Chrome extension to override default behaviour on SCP wiki and its regional branches
 */
 
-var SCPPER_EXTENSION_ID = "cpebggobaenfndpoddkdindknnpbjdfc";
+// var SCPPER_EXTENSION_ID = "cpebggobaenfndpoddkdindknnpbjdfc";
 
 // Default wrapper for overriden functions
 function scpperDefaultHandlerOverride(listener, setCallback, message, args) {    
@@ -52,7 +52,7 @@ function scpperUserInfoDialog(userId, aUserName) {
         var res = WIKIDOT.page.callbacks.userInfo;
         WIKIDOT.page.callbacks.userInfo = f;
         return res;}, 
-        {text: "USER_INFO_DIALOG_EXTERNAL", userName: aUserName},
+        {text: "USER_INFO_DIALOG_EXTERNAL", userName: aUserName, userId: userId},
         [userId]);
 }
 

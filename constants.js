@@ -42,7 +42,7 @@ var SCP_WEBSITES = [
     },
     {name: "Korean",
     primaryLink: "http://ko.scp-wiki.net",
-    linkTemplates: ["ko\\.scp-wiki\\.net", "(www\\.)?scp-kr\\.wikidot\\.com"],
+    linkTemplates: ["ko\\.scp-wiki\\.net", "(www\\.)?scpko\\.wikidot\\.com"],
     checkTags: false,
     permittedTags: ["SCP", "이야기", "보충"],
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],

@@ -21,8 +21,8 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
     },
     {name: "Russian",
-    primaryLink: "http://scpfoundation.ru",
-    linkTemplates: ["(www\\.)?scpfoundation\\.ru", "(www\\.)?scp-ru\\.wikidot\\.com"],
+    primaryLink: "http://scpfoundation.net",
+    linkTemplates: ["(www\\.)?scpfoundation\\.ru", "(www\\.)?scp-ru\\.wikidot\\.com", "(www\\.)?scpfoundation\\.net"],
     checkTags: false,
     permittedTags: [],
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK", "RIMG"],
@@ -105,14 +105,14 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke"]}]
     },
     {name: "Spanish",
-    primaryLink: "http://lafundacionscp.wikidot.com",
-    linkTemplates: ["(www\\.)?lafundacionscp\\.wikidot\\.com"],
+    primaryLink: "http://scp-es.com/",
+    linkTemplates: ["(www\\.)?lafundacionscp\\.wikidot\\.com", "(www\\.)?scp-es\\.com"],
     checkTags: false,
     permittedTags: [],
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],
     membersPages: null,
     articleTemplates: [
-        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ES|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ES|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-1", "/serie-scp-2", "/serie-scp-3", "/serie-scp-4", "/serie-scp-5"]},
+        {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ES|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ES|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4", "/scp-series-5"]},
         {kind: "ES", strictRegEx: "SCP-ES-\\d{3,4}(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?ES-\\d{3,4}(?!-(ARC|EX|D|J))", numberRegEx: "ES-\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-es", "/serie-scp-es-2"]},
         {kind: "ARC", strictRegEx: "SCP-(ES-)?\\d{3,4}-ARC", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-ARC", numberRegEx: "(ES-)?\\d{3,4}-ARC", urlTemplate: "/SCP-@", listPages: ["/scps-archivados"]},
         {kind: "EX", strictRegEx: "SCP-(ES-)?\\d{3,4}-EX", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-EX", numberRegEx: "(ES-)?\\d{3,4}-EX", urlTemplate: "/SCP-@", listPages: ["/scps-exs"]},

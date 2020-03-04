@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.2.1.11",
+  "version": "0.2.1.12",
   "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
 	"128": "scp-logo-128.png",

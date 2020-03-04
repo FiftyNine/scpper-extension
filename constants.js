@@ -143,7 +143,7 @@ var SCP_WEBSITES = [
     membersPages: ["/members-pages-jp", "/members-pages"],
     articleTemplates: [
         {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(JP|ARC|EX|D|J|KO))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4", "/scp-series-5", "/scp-series-6"]},
-        {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-JP(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-JP", urlTemplate: "/SCP-@", listPages: ["/scp-series-jp", "/scp-series-jp-2"]},
+        {kind: "JP", strictRegEx: "SCP-\\d{3,4}-JP(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}-JP(?!-(ARC|EX|D|J))", numberRegEx: "\\d{3,4}-JP", urlTemplate: "/SCP-@", listPages: ["/scp-series-jp", "/scp-series-jp-2", "/scp-series-jp-3"]},
         {kind: "KO", strictRegEx: "SCP-\\d{3,4}-KO", laxRegEx: "(SCP-)?\\d{3,4}-KO", numberRegEx: "\\d{3,4}-KO", urlTemplate: "/SCP-@", listPages: ["/scp-series-ko"]},
         {kind: "ARC", strictRegEx: "SCP-\\d{3,4}(-JP)?-ARC", laxRegEx: "(SCP-)?\\d{3,4}(-JP)?-ARC", numberRegEx: "\\d{3,4}(-JP)?-ARC", urlTemplate: "/SCP-@", listPages: ["/archived-scps", "/archived-scps-jp"]},
         {kind: "EX", strictRegEx: "SCP-\\d{3,4}(-JP)?-EX", laxRegEx: "(SCP-)?\\d{3,4}(-JP)?-EX", numberRegEx: "\\d{3,4}(-JP)?-EX", urlTemplate: "/SCP-@", listPages: ["/scp-ex", "/scp-jp-ex"]},

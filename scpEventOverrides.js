@@ -1,8 +1,11 @@
-/*
+/*	
 This module contains functions that are used by SCPper Chrome extension to override default behaviour on SCP wiki and its regional branches
 */
 
-// var SCPPER_EXTENSION_ID = "cpebggobaenfndpoddkdindknnpbjdfc";
+function sendMessageToScpper(message) {
+	var messageEvent = new CustomEvent('ScpperExternalMessage', {detail: message});
+	document.dispatchEvent(messageEvent);	
+}
 
 // Default wrapper for overriden functions
 function scpperDefaultHandlerOverride(listener, setCallback, message, args) {    
@@ -13,9 +16,9 @@ function scpperDefaultHandlerOverride(listener, setCallback, message, args) {
             try {
                 // Call original callback
                 oldCallback(a);
-            } finally {                
+            } finally {              
                 // Send message home 
-                chrome.runtime.sendMessage(SCPPER_EXTENSION_ID, message);        
+				sendMessageToScpper(message);
             }
     });
     try {
@@ -40,7 +43,7 @@ function scpperForumChangePageHandler(a) {
             if (!WIKIDOT.utils.handleError(b))
                 return;
             $j("#thread-container-posts").html(b.body);
-            chrome.runtime.sendMessage(SCPPER_EXTENSION_ID, {text: "FORUM_POSTS_UPDATED_EXTERNAL"});
+			sendMessageToScpper({text: "FORUM_POSTS_UPDATED_EXTERNAL"});
             OZONE.visuals.scrollTo("thread-container");            
         }
     );
@@ -118,7 +121,7 @@ function scpperForumLoadPostOverride(post_id) {
                 return
             }
             $j("#thread-container-posts").html(c.body);
-            chrome.runtime.sendMessage(SCPPER_EXTENSION_ID, {text: "FORUM_POSTS_UPDATED_EXTERNAL"});
+			sendMessageToScpper({text: "FORUM_POSTS_UPDATED_EXTERNAL"});
             OZONE.visuals.scrollTo("thread-container-posts");
         }, 
         null, 

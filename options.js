@@ -100,7 +100,7 @@ function initOptions() {
 function setOptionAndSave(name, value) {
     var newValue = JSON.parse(JSON.stringify(scpperSettings));
     newValue[name] = value;
-    chrome.storage.sync.set({"scpperSettings": newValue}, function() {
+	chrome.storage.sync.set({"scpperSettings": newValue}, function() {
         if (!chrome.runtime.lastError) {
             scpperSettings = newValue;
         } else if (statusElement) {

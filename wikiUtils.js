@@ -89,8 +89,8 @@ function getUserMemberPageLink(userName, callback) {
     for (var i=0; i<scpWebsite.membersPages.length; i++)
         makeXMLHttpRequest(null, scpWebsite.primaryLink+scpWebsite.membersPages[i], function(sender, response, success) {
             if (success) {
-                var doc = document.implementation.createHTMLDocument("");
-                doc.write(response);
+				var parser = new DOMParser();
+				var doc = parser.parseFromString(response, "text/html");
                 var memberPage = getUserMemberPageLinkFromDoc(doc, userName);
                 if (memberPage)
                     callback(memberPage);
@@ -204,7 +204,7 @@ function retrievePageInfo() {
     if (!pageId)
         return;     
     chrome.runtime.sendMessage(
-        SCPPER_EXTENSION_ID,
+        chrome.runtime.id,
         {contentScriptQuery: "pageInfo", pageId: pageId},
         null,    
         function (response) {            

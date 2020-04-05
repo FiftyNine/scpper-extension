@@ -130,15 +130,12 @@ function processForumPage() {
 }
 
 // Listen to messages from forum page
-chrome.runtime.onMessage.addListener(
-    function(message, sender, sendResponse) {
-        if (message.text == "FORUM_POSTS_UPDATED_INTERNAL")
-        {
-            scpForumProcessPosts();
-            scpForumOverridePageHandlers();
-            overrideUserInfoLinks();
-            enhanceLinks();
-            setForumPostAnchor();
-        }
-    }
-);
+document.addEventListener('ScpperExternalMessage', function(event) {
+    if (event.detail.text == "FORUM_POSTS_UPDATED_EXTERNAL") {
+		scpForumProcessPosts();
+		scpForumOverridePageHandlers();
+		overrideUserInfoLinks();
+		enhanceLinks();
+		setForumPostAnchor();		
+	}
+});

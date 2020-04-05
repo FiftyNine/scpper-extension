@@ -131,9 +131,9 @@ function fillScpNameCache(website, callback) {
         makeXMLHttpRequest(i, url, function(sender, response, success) {
             var storeObj = {};
             if (success) {
-                var doc = document.implementation.createHTMLDocument("");
-                doc.write(response);
-                var list = extractScpNames(doc, templates[sender]);            
+				var parser = new DOMParser();
+				var doc = parser.parseFromString(response, "text/html");
+                var list = extractScpNames(doc, templates[sender]);
                 for (var j=0; j<list.length; j++)
                     storeObj[website.name+"SCP"+list[j].number+"NAME"] = list[j].name;
             }

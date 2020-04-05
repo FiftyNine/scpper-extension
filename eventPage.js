@@ -20,32 +20,16 @@ chrome.runtime.onInstalled.addListener(function (details) {
             chrome.storage.local.clear();
         }
         if (needSave)
-            chrome.storage.sync.set({"scpperSettings": newSettings});
+			chrome.storage.sync.set({"scpperSettings": newSettings});
     });
 });
-
-// Listen to messages from forum page
-chrome.runtime.onMessageExternal.addListener(
-  function(message, sender, sendResponse) {
-    if (message.text == "FORUM_POSTS_UPDATED_EXTERNAL")
-        chrome.tabs.sendMessage(sender.tab.id, {text: "FORUM_POSTS_UPDATED_INTERNAL"})
-    else if (message.text == "USER_INFO_DIALOG_EXTERNAL")
-        chrome.tabs.sendMessage(sender.tab.id, {text: "USER_INFO_DIALOG_INTERNAL", userName: message.userName, userId: message.userId})
-    else if (message.text == "HISTORY_MODULE_LOADED_EXTERNAL")
-        chrome.tabs.sendMessage(sender.tab.id, {text: "HISTORY_MODULE_LOADED_INTERNAL"})        
-    else if (message.text == "ACTION_AREA_UPDATED_EXTERNAL")
-        chrome.tabs.sendMessage(sender.tab.id, {text: "ACTION_AREA_UPDATED_INTERNAL"})
-    else if (message.text == "PAGERATE_MODULE_LOADED_EXTERNAL")
-        chrome.tabs.sendMessage(sender.tab.id, {text: "PAGERATE_MODULE_LOADED_INTERNAL"})
-  }
-);
 
 // As of Chrome 73 CORS from content scripts is prohibited, 
 // and the suggested solution is to pass between CS and background page
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.contentScriptQuery == "pageInfo") {
-        var url = "http://db.scpper.com/extension-page-info?pageId=" +
+        var url = "http://scpper.com/extension-page-info?pageId=" +
             encodeURIComponent(request.pageId);
         var request = new XMLHttpRequest();
         request.onreadystatechange = function() {

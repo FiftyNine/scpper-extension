@@ -10,10 +10,10 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "cpebggobaenfndpoddkdindknnpbjdfc@me.ru",
+      "id": "cpebggobaenfndpoddkdindknnpbjdfc@fiftynine.scp",
       "strict_min_version": "42.0"
     }
-  },  
+  },
   "author": "Alexander \"FiftyNine\" Krivopalov",
   "default_locale": "en",
   "background": {

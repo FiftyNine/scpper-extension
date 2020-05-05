@@ -43,6 +43,10 @@
 		"message": "記事のタイトルをSCP一覧から取得して加える",
 		"description": "Description for the checkbox deciding whether or not add SCP name from the main list to the title (when reading an article)"
 	},
+	"OPTIONS_PAGE_INFO_IN_FOOTER": {
+		"message": "フッターに著者名とページの情報を表示する",
+		"description": "Description for the checkbox deciding whether or not add additional page information to footer (when reading an article)"
+	},
 	"OPTIONS_FORUM_PAGES_HISTORY": {
 		"message": "フォーラムのスレッドをブラウザの履歴に追加する",
 		"description": "Description for the checkbox deciding whether or not add forum thread pages to browser history"

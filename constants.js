@@ -112,7 +112,7 @@ var SCP_WEBSITES = [
     membersPages: null,
     articleTemplates: [
         {kind: "MAIN", strictRegEx: "SCP-\\d{3,4}(?!-(ES|ARC|EX|D|J))", laxRegEx: "(SCP-)?\\d{3,4}(?!-(ES|ARC|EX|D|J))", numberRegEx: "\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/scp-series", "/scp-series-2", "/scp-series-3", "/scp-series-4", "/scp-series-5", "/scp-series-6"]},
-        {kind: "ES", strictRegEx: "SCP-ES-\\d{3,4}(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?ES-\\d{3,4}(?!-(ARC|EX|D|J))", numberRegEx: "ES-\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-es", "/serie-scp-es-2"]},
+        {kind: "ES", strictRegEx: "SCP-ES-\\d{3,4}(?!-(ARC|EX|D|J))", laxRegEx: "(SCP-)?ES-\\d{3,4}(?!-(ARC|EX|D|J))", numberRegEx: "ES-\\d{3,4}", urlTemplate: "/SCP-@", listPages: ["/serie-scp-es", "/serie-scp-es-2", "/serie-scp-es-3"]},
         {kind: "ARC", strictRegEx: "SCP-(ES-)?\\d{3,4}-ARC", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-ARC", numberRegEx: "(ES-)?\\d{3,4}-ARC", urlTemplate: "/SCP-@", listPages: ["/scps-archivados"]},
         {kind: "EX", strictRegEx: "SCP-(ES-)?\\d{3,4}-EX", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-EX", numberRegEx: "(ES-)?\\d{3,4}-EX", urlTemplate: "/SCP-@", listPages: ["/scps-exs"]},
         {kind: "D", strictRegEx: "SCP-(ES-)?\\d{3,4}-D", laxRegEx: "(SCP-)?(ES-)?\\d{3,4}-D", numberRegEx: "(ES-)?\\d{3,4}-D", urlTemplate: "/decomm:SCP-@", listPages: ["/scps-desmantelados"]},

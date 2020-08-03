@@ -6,8 +6,8 @@ var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24; // Milliseconds in a day
 // Templates should be checked from last to first
 var SCP_WEBSITES = [
     {name: "English", 
-    primaryLink: "http://www.scp-wiki.net",
-    linkTemplates: ["(www\\.)?scp-wiki\\.net", "(www\\.)?scp-wiki\\.wikidot\\.com"],
+    primaryLink: "http://www.scpwiki.com",
+    linkTemplates: ["(www\\.)?scpwiki\\.com", "(www\\.)?scp-wiki\\.net", "(www\\.)?scp-wiki\\.wikidot\\.com"],
     checkTags: true,
     permittedTags: ["scp", "tale", "supplement"],
     ignoreElements: ["PAGE-RATE-WIDGET-BOX", "SCP-IMAGE-BLOCK"],    

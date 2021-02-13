@@ -51,7 +51,7 @@ function scpLinkifyTextNode(node, linkedNumbers, template, strict) {
                 parent.insertBefore(textNode, node);
                 var scpLink = document.createElement('a');
                 var scpLinkText = document.createTextNode(trimmedMatch[0]);
-                scpLink.setAttribute("href", template.urlTemplate.replace("@", scpNumber[0]));                
+                scpLink.setAttribute("href", template.urlTemplate.replace("@", scpNumber[0]));
                 scpLink.appendChild(scpLinkText);
                 parent.insertBefore(scpLink, node);
                 scpAddLinkedNumber(scpLink, linkedNumbers);
@@ -89,8 +89,8 @@ function getUserMemberPageLink(userName, callback) {
     for (var i=0; i<scpWebsite.membersPages.length; i++)
         makeXMLHttpRequest(null, scpWebsite.primaryLink+scpWebsite.membersPages[i], function(sender, response, success) {
             if (success) {
-				var parser = new DOMParser();
-				var doc = parser.parseFromString(response, "text/html");
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(response, "text/html");
                 var memberPage = getUserMemberPageLinkFromDoc(doc, userName);
                 if (memberPage)
                     callback(memberPage);
@@ -202,63 +202,59 @@ function retrievePageInfo() {
         return;    
     var pageId = /\d+/.exec(temp[0])[0];
     if (!pageId)
-        return;     
-    chrome.runtime.sendMessage(
-        chrome.runtime.id,
-        {contentScriptQuery: "pageInfo", pageId: pageId},
-        null,    
-        function (response) {            
-            if (!scpWebsite) 
-                return;
-            var result = JSON.parse(response);
-            var info = document.querySelector("div#page-info");
-            if (!result || !info || result.status != 'ok')
-                return;
-            result = result.data;
-            var newInfo = document.createElement("div");
-            newInfo.id = "scpper-page-info";
-            var authors = [];
-            var rewriters = [];
-            var translators = [];
-            console.log(response);
-            for (var i=0; i<result.authors.length; i++) {
-                var userlink = makeUserLink(result.authors[i]);
-                switch (result.authors[i].role) {
-                    case 'Author': 
-                        authors.push(userlink);
-                        break;
-                    case 'Rewrite author': 
-                        rewriters.push(userlink);
-                        break;
-                    case 'Translator': 
-                        translators.push(userlink);
-                        break;
-                }
+        return;
+    var url = "http://scpper.com/extension-page-info?pageId=" + encodeURIComponent(pageId);
+    makeXMLHttpRequest(null, url, function(sender, response, success) {
+        if (!scpWebsite || !success) 
+            return;
+        var result = JSON.parse(response);
+        var info = document.querySelector("div#page-info");
+        if (!result || !info || result.status != 'ok')
+            return;
+        result = result.data;
+        var newInfo = document.createElement("div");
+        newInfo.id = "scpper-page-info";
+        var authors = [];
+        var rewriters = [];
+        var translators = [];
+        // console.log(response);
+        for (var i=0; i<result.authors.length; i++) {
+            var userlink = makeUserLink(result.authors[i]);
+            switch (result.authors[i].role) {
+                case 'Author': 
+                    authors.push(userlink);
+                    break;
+                case 'Rewrite author': 
+                    rewriters.push(userlink);
+                    break;
+                case 'Translator': 
+                    translators.push(userlink);
+                    break;
             }
-            var authorText = "";
-            var rewriterText = "";
-            var translatorText = "";
-            if (result.status == "Original") {
-                if (authors.length>0)
-                    authorText = "Written by "+authors.join(", ")+". ";
-            } else {
-                var original = "<a href=\""+result.original+"\">Original</a>";
-                if (authors.length>0)
-                    authorText = original+" by "+authors.join(", ")+". ";
-                else
-                    authorText = original+".";
-                if (translators.length>0) 
-                    translatorText = "Translated by "+translators.join(", ")+". ";
-            }
-            if (rewriters.length>0) 
-                rewriterText = "Rewritten by "+rewriters.join(", ")+". ";
-            var postingDate = new Date(Number(result.date)*1000);
-            var options = { day: 'numeric', month: 'short', year: 'numeric'};
-            var createdText = "Posted on "+postingDate.toLocaleString('default', options)+".";
-            newInfo.innerHTML = authorText+rewriterText+translatorText+createdText;
-            info.insertBefore(newInfo, info.firstChild);
         }
-    );
+        var authorText = "";
+        var rewriterText = "";
+        var translatorText = "";
+        if (result.status == "Original") {
+            if (authors.length>0)
+                authorText = "Written by "+authors.join(", ")+". ";
+        } else {
+            var original = "<a href=\""+result.original+"\">Original</a>";
+            if (authors.length>0)
+                authorText = original+" by "+authors.join(", ")+". ";
+            else
+                authorText = original+".";
+            if (translators.length>0) 
+                translatorText = "Translated by "+translators.join(", ")+". ";
+        }
+        if (rewriters.length>0) 
+            rewriterText = "Rewritten by "+rewriters.join(", ")+". ";
+        var postingDate = new Date(Number(result.date)*1000);
+        var options = { day: 'numeric', month: 'short', year: 'numeric'};
+        var createdText = "Posted on "+postingDate.toLocaleString('default', options)+".";
+        newInfo.innerHTML = authorText+rewriterText+translatorText+createdText;
+        info.insertBefore(newInfo, info.firstChild);
+    });
 }
 
 // Override history module update list button handler

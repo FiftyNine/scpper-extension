@@ -4,11 +4,24 @@ var DEBUG = false;
 // Format of SCP name in storage: "SITENAMESCP###NAME"
 
 // Current scp website    
-var scpWebsite;        
+var scpWebsite;
 // Settings
 var scpperSettings;
-    
-function makeXMLHttpRequest(sender, url, callback) {
+
+// Redirects all XHR to background page via messaging API
+// because in Chrome CORS can't be done from a content script
+function makeXhrChrome(sender, url, callback) {
+    chrome.runtime.sendMessage(
+        chrome.runtime.id,
+        {sender: sender, kind: "XHR", url: url},
+        null,
+        function (response) {
+            callback(response.sender, response.text, response.success);
+        }
+    );
+}
+
+function makeXhrFirefox(sender, url, callback) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
             if (request.readyState == 4)
@@ -16,6 +29,15 @@ function makeXMLHttpRequest(sender, url, callback) {
     }
     request.open("GET", url, true);
     request.send();
+}
+
+function makeXMLHttpRequest(sender, url, callback) {
+    // Fuck polyfills
+    if (navigator.userAgent.indexOf("Chrome") != -1) {
+        makeXhrChrome(sender, url, callback);
+    } else {
+        makeXhrFirefox(sender, url, callback);
+    }
 }
 
 // Get extension settings
@@ -38,7 +60,7 @@ function injectExtensionScript(fileName, onLoadScript) {
     else
         myScript.onload = function () {myScript.parentNode.removeChild(myScript)};
     document.head.appendChild(myScript);
-}    
+}
 
 // Inject script into document
 function injectScript(scriptText) {
@@ -47,8 +69,8 @@ function injectScript(scriptText) {
     myScript.text = scriptText;
     document.head.appendChild(myScript);
     myScript.parentNode.removeChild(myScript);
-}    
-    
+}
+
 // Figure out website by URL
 function identifyScpWebsite(URL) {
     for (var i=0; i<SCP_WEBSITES.length; i++)
@@ -127,12 +149,11 @@ function fillScpNameCache(website, callback) {
     var pagesLeft = pages.length;
     var errors = false;
     for (var i=0; i<pages.length; i++) {
-        var url = website.primaryLink+pages[i];
-        makeXMLHttpRequest(i, url, function(sender, response, success) {
+        makeXMLHttpRequest(i, website.primaryLink+pages[i], function(sender, response, success) {
             var storeObj = {};
             if (success) {
-				var parser = new DOMParser();
-				var doc = parser.parseFromString(response, "text/html");
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(response, "text/html");
                 var list = extractScpNames(doc, templates[sender]);
                 for (var j=0; j<list.length; j++)
                     storeObj[website.name+"SCP"+list[j].number+"NAME"] = list[j].name;

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.3.1.17",
+  "version": "0.3.1.18",
   "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
     "128": "scp-logo-128.png",
@@ -27,7 +27,7 @@
         "matches": [
             "*://www.reddit.com/r/SCP/*",
             "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
-            "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
+            "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
             "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
             "*://scp-wiki-cn.wikidot.com/*",
             "*://fondationscp.wikidot.com/*",
@@ -54,7 +54,7 @@
   "externally_connectable": {
         "matches": [
             "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
-            "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
+            "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
             "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
             "*://scp-wiki-cn.wikidot.com/*",
             "*://fondationscp.wikidot.com/*",
@@ -78,7 +78,7 @@
     "storage",
     "*://www.scpper.com/*", "*://scpper.com/*",
     "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
-    "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*",
+    "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
     "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
     "*://scp-wiki-cn.wikidot.com/*",
     "*://fondationscp.wikidot.com/*",

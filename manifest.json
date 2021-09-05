@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.3.1.18",
+  "version": "0.3.1.19",
   "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
     "128": "scp-logo-128.png",
@@ -77,7 +77,7 @@
   "permissions": [
     "storage",
     "*://www.scpper.com/*", "*://scpper.com/*",
-    "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
+    "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*", "*://scpwiki.com/*",
     "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
     "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
     "*://scp-wiki-cn.wikidot.com/*",

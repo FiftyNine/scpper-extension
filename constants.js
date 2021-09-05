@@ -5,8 +5,9 @@ var SCP_NAME_CACHE_EXPIRATION = 1000*60*60*24; // Milliseconds in a day
 // Names must be unique!
 // Templates should be checked from last to first
 var SCP_WEBSITES = [
-    {name: "English", 
-    primaryLink: "http://www.scpwiki.com",
+    {name: "English",
+    protocol: "https",
+    primaryLink: "https://www.scpwiki.com",
     linkTemplates: ["(www\\.)?scpwiki\\.com", "(www\\.)?scp-wiki\\.net", "(www\\.)?scp-wiki\\.wikidot\\.com"],
     checkTags: true,
     permittedTags: ["scp", "tale", "supplement"],
@@ -20,6 +21,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
     },
     {name: "Russian",
+    protocol: "http",
     primaryLink: "http://scpfoundation.net",
     linkTemplates: ["(www\\.)?scpfoundation\\.ru", "(www\\.)?scp-ru\\.wikidot\\.com", "(www\\.)?scpfoundation\\.net"],
     checkTags: false,
@@ -40,6 +42,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-list-j"]}]
     },
     {name: "Korean",
+    protocol: "http",
     primaryLink: "http://ko.scp-wiki.net",
     linkTemplates: ["ko\\.scp-wiki\\.net", "(www\\.)?scpko\\.wikidot\\.com"],
     checkTags: false,
@@ -57,6 +60,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-ko"]}]
     },
     {name: "Chinese",
+    protocol: "http",
     primaryLink: "http://scp-wiki-cn.wikidot.com",
     linkTemplates: ["(www\\.)?scp-wiki-cn\\.wikidot\\.com"],
     checkTags: false,
@@ -72,6 +76,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-cn"]}]
     },
     {name: "French",
+    protocol: "http",
     primaryLink: "http://fondationscp.wikidot.com",
     linkTemplates: ["(www\\.)?fondationscp\\.wikidot\\.com"],
     checkTags: false,
@@ -89,6 +94,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/scps-humoristique-francais"]}]
     },    
     {name: "Polish",
+    protocol: "http",
     primaryLink: "http://scp-wiki.net.pl",
     linkTemplates: ["(www\\.)?scp-wiki\\.net\\.pl", "(www\\.)?scp-pl\\.wikidot\\.com"],
     checkTags: false,
@@ -104,6 +110,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-pl"]}]
     },
     {name: "Spanish",
+    protocol: "http",
     primaryLink: "http://scp-es.com",
     linkTemplates: ["(www\\.)?lafundacionscp\\.wikidot\\.com", "(www\\.)?scp-es\\.com"],
     checkTags: false,
@@ -120,6 +127,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
     },
     {name: "Thai",
+    protocol: "http",
     primaryLink: "http://scp-th.wikidot.com",
     linkTemplates: ["(www\\.)?scp-th\\.wikidot\\.com"],
     checkTags: false,
@@ -135,6 +143,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-th"]}]
     },
     {name: "Japanese",
+    protocol: "http",
     primaryLink: "http://ja.scp-wiki.net",
     linkTemplates: ["ja\\.scp-wiki\\.net", "(www\\.)?scp-jp\\.wikidot\\.com"],
     checkTags: false,
@@ -162,6 +171,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-jp"]}]
     },
     {name: "German",
+    protocol: "http",
     primaryLink: "http://scp-wiki-de.wikidot.com",
     linkTemplates: ["(www\\.)?scp-wiki-de\\.wikidot\\.com"],
     checkTags: false,
@@ -176,6 +186,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
     },
     {name: "Italian",
+    protocol: "http",
     primaryLink: "http://fondazionescp.wikidot.com",
     linkTemplates: ["(www\\.)?fondazionescp\\.wikidot\\.com"],
     checkTags: false,
@@ -190,6 +201,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-scherzo"]}]
     },
     {name: "Ukrainian",
+    protocol: "http",
     primaryLink: "http://scp-ukrainian.wikidot.com",
     linkTemplates: ["(www\\.)?scp-ukrainian\\.wikidot\\.com"],
     checkTags: false,
@@ -204,6 +216,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/scp-list-j"]}]
     },
     {name: "Portuguese",
+    protocol: "http",
     primaryLink: "http://scp-pt-br.wikidot.com",
     linkTemplates: ["(www\\.)?scp-pt-br\\.wikidot\\.com"],
     checkTags: false,
@@ -218,6 +231,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
     },
     {name: "Czech", 
+    protocol: "http",
     primaryLink: "http://scp-cs.wikidot.com",
     linkTemplates: ["(www\\.)?scp-cs\\.wikidot\\.com"],
     checkTags: false,
@@ -232,6 +246,7 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps"]}]
     },
     {name: "TraditionalChinese",
+    protocol: "http",
     primaryLink: "http://scp-zh-tr.wikidot.com",
     linkTemplates: ["(www\\.)?scp-zh-tr\\.wikidot\\.com"],
     checkTags: false,

@@ -68,7 +68,7 @@ function scpLinkifyTextNode(node, linkedNumbers, template, strict) {
 // Parse document and get member page link
 function getUserMemberPageLinkFromDoc(doc, userName) {
     var links = doc.querySelectorAll("#page-content table.wiki-content-table a");
-    var userRegEx = new RegExp("http://www\\.wikidot\\.com/user:info/"+userName+"$");
+    var userRegEx = new RegExp("https?://www\\.wikidot\\.com/user:info/"+userName+"$");
     for (var i=0; i<links.length; i++)
         if (userRegEx.test(links[i].getAttribute("href"))) {
             var j=i+1;
@@ -188,7 +188,7 @@ function makeUserLink(user) {
     if (Number(user.deleted))
         return user.user;
     else
-        return "<a href=\"http://www.wikidot.com/user:info/"+user.userName
+        return "<a href=\""+scpWebsite.protocol+"://www.wikidot.com/user:info/"+user.userName
             +"\" onclick=\"scpperUserInfoDialog("+user.userId+",&quot;"+user.userName+"&quot;); return false;\">"+user.user+"</a>";
 }
 

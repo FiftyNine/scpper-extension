@@ -109,7 +109,7 @@ function processUserInfoDialog(userName, userId) {
     // Add Scpper profile
     var linkElem = document.createElement("a");
     linkElem.innerText = userName;
-    linkElem.setAttribute("href", "http://scpper.com/user/"+userId);
+    linkElem.setAttribute("href", "https://scpper.com/user/"+userId);
     var row = tableElem.insertRow(-1);
     var head = row.insertCell(0);
     head.innerHTML = "<b>Scpper profile</b>";
@@ -203,7 +203,7 @@ function retrievePageInfo() {
     var pageId = /\d+/.exec(temp[0])[0];
     if (!pageId)
         return;
-    var url = "http://scpper.com/extension-page-info?pageId=" + encodeURIComponent(pageId);
+    var url = "https://scpper.com/extension-page-info?pageId=" + encodeURIComponent(pageId);
     makeXMLHttpRequest(null, url, function(sender, response, success) {
         if (!scpWebsite || !success) 
             return;

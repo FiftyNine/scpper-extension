@@ -60,8 +60,8 @@ var SCP_WEBSITES = [
         {kind: "J", strictRegEx: "SCP-[\\w-]+-J", laxRegEx: "(SCP-)?[\\w-]+-J", numberRegEx: "\\b(?!SCP)\\w+[\\w-]*-J", urlTemplate: "/SCP-@", listPages: ["/joke-scps", "/joke-scps-ko"]}]
     },
     {name: "Chinese",
-    protocol: "http",
-    primaryLink: "http://scp-wiki-cn.wikidot.com",
+    protocol: "https",
+    primaryLink: "https://scp-wiki-cn.wikidot.com",
     linkTemplates: ["(www\\.)?scp-wiki-cn\\.wikidot\\.com"],
     checkTags: false,
     permittedTags: [],

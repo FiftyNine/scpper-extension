@@ -1,10 +1,17 @@
 var scpTemplate, scpSearchTemplate;
 
+function sendMessageToPage(detail) {
+    // Firefox requires this to send data from script to page
+    if (typeof cloneInto != 'undefined')
+        detail = cloneInto(detail, document.defaultView);
+    var messageEvent = new CustomEvent('ScpperExternalResponse', {detail: detail});
+    document.dispatchEvent(messageEvent);
+}
 
 // Add linked SCP from an <a> elem
 function scpAddLinkedNumber(node, linkedNumbers) {
-    if (node.nodeName.toUpperCase()=="A") 
-        for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--) {        
+    if (node.nodeName.toUpperCase()=="A")
+        for (var i=scpWebsite.articleTemplates.length-1; i>=0; i--) {
             var template = scpWebsite.articleTemplates[i];
             var ref = new RegExp(template.urlTemplate.replace("@", template.numberRegEx)+"$", "i").exec(node.getAttribute("href"));
             if (ref != null) {
@@ -13,49 +20,49 @@ function scpAddLinkedNumber(node, linkedNumbers) {
                     linkedNumbers[num[0].toUpperCase()] = 1;
             }
     }
-}    
+}
 
 // Process a text node and convert matching text into SCP links
 function scpLinkifyTextNode(node, linkedNumbers, template, strict) {
     if (!scpperSettings.useLinkifier)
         return;
     var scpSearchTemplate;
-    if (strict)         
+    if (strict)
         scpSearchTemplate = template.strictRegEx
     else
         scpSearchTemplate = template.laxRegEx;
-    var trimmedScpRegEx = new RegExp(scpSearchTemplate, "igm");                
+    var trimmedScpRegEx = new RegExp(scpSearchTemplate, "igm");
     scpSearchTemplate = "([\\W_]|\\b)"+scpSearchTemplate+"([\\W_]|\\b)";
-    var parent = node.parentElement;    
+    var parent = node.parentElement;
     if (!node.nodeValue || (parent == null))
         return;
-    var scpRegEx = new RegExp(scpSearchTemplate, "igm");        
+    var scpRegEx = new RegExp(scpSearchTemplate, "igm");
     var oldText = node.nodeValue;
     var found = false;
     var scpMatch, trimmedMatch;
-    var prevPos = 0;    
-    var tmp = 0;            
+    var prevPos = 0;
+    var tmp = 0;
     while ((scpMatch = scpRegEx.exec(oldText)) != null) {
-        found = true;        
+        found = true;
         var scpNumberRegEx = new RegExp(template.numberRegEx, "igm");
         var scpNumber = scpNumberRegEx.exec(scpMatch[0]);
         // General check
         if ((scpNumber != null) && (!linkedNumbers[scpNumber[0].toUpperCase()])) {
-                // Separate check for main list SCPs
-                if ((template.kind == "MAIN") && (Number(scpNumber[0]) > MAX_SCP_NUMBER))
-                    continue;        
-                trimmedScpRegEx.lastIndex = scpRegEx.lastIndex-scpMatch[0].length;
-                trimmedMatch = trimmedScpRegEx.exec(oldText);
-                var text = oldText.substring(prevPos, trimmedScpRegEx.lastIndex-trimmedMatch[0].length);
-                var textNode = document.createTextNode(text);
-                parent.insertBefore(textNode, node);
-                var scpLink = document.createElement('a');
-                var scpLinkText = document.createTextNode(trimmedMatch[0]);
-                scpLink.setAttribute("href", template.urlTemplate.replace("@", scpNumber[0]));
-                scpLink.appendChild(scpLinkText);
-                parent.insertBefore(scpLink, node);
-                scpAddLinkedNumber(scpLink, linkedNumbers);
-                prevPos = trimmedScpRegEx.lastIndex;
+            // Separate check for main list SCPs
+            if ((template.kind == "MAIN") && (Number(scpNumber[0]) > MAX_SCP_NUMBER))
+                continue;
+            trimmedScpRegEx.lastIndex = scpRegEx.lastIndex-scpMatch[0].length;
+            trimmedMatch = trimmedScpRegEx.exec(oldText);
+            var text = oldText.substring(prevPos, trimmedScpRegEx.lastIndex-trimmedMatch[0].length);
+            var textNode = document.createTextNode(text);
+            parent.insertBefore(textNode, node);
+            var scpLink = document.createElement('a');
+            var scpLinkText = document.createTextNode(trimmedMatch[0]);
+            scpLink.setAttribute("href", template.urlTemplate.replace("@", scpNumber[0]));
+            scpLink.appendChild(scpLinkText);
+            parent.insertBefore(scpLink, node);
+            scpAddLinkedNumber(scpLink, linkedNumbers);
+            prevPos = trimmedScpRegEx.lastIndex;
             }
     }
     if (found) {
@@ -100,7 +107,7 @@ function getUserMemberPageLink(userName, callback) {
 
 // Process user info dialog and add link to the correspondent member page
 function processUserInfoDialog(userName, userId) {
-    var dialogElem = document.getElementById("odialog-container");    
+    var dialogElem = document.getElementById("odialog-container");
     if (!dialogElem || (dialogElem.childNodes.length == 0))
         return;
     var tableElem = dialogElem.querySelector("div.content.modal-body table");
@@ -114,10 +121,10 @@ function processUserInfoDialog(userName, userId) {
     var head = row.insertCell(0);
     head.innerHTML = "<b>Scpper profile</b>";
     var body = row.insertCell(1);
-    body.appendChild(linkElem);        
+    body.appendChild(linkElem);
     if (!scpperSettings.addAuthorPage)
         return;
-    getUserMemberPageLink(userName, function(memberPage) {        
+    getUserMemberPageLink(userName, function(memberPage) {
         if (!memberPage)
             return;
         var linkElem = document.createElement("a");
@@ -127,61 +134,8 @@ function processUserInfoDialog(userName, userId) {
         var head = row.insertCell(0);
         head.innerHTML = "<b>"+chrome.i18n.getMessage("AUTHOR_PAGE")+"</b>";
         var body = row.insertCell(1);
-        body.appendChild(linkElem);        
+        body.appendChild(linkElem);
     });
-}
-
-// Handles loading of history module
-function historyModuleLoaded() {
-    overrideHistoryModuleUpdateListButton();
-    // We have no control over initialization of history module scripts, so we have to wait until they're done
-    // and then apply our overrides
-    var historyLoading = setInterval(function() {
-        var revList = document.getElementById("revision-list");
-        if (!revList || (revList.childElementCount > 0)) {
-            overrideHistoryModuleUpdateRevisionListPageButtons();
-            overrideUserInfoLinks();
-            clearInterval(historyLoading);
-        }
-    }, 1000);
-};
-
-/* Function overrides for default handlers */
-
-// Override handler for an element
-function overrideElementHandler(elem, tempId, event, handler) {
-    var oldId = elem.id;
-    elem.id = tempId;
-    try {
-        injectScript('document.getElementById("'+elem.id+'").setAttribute("'+event+'", '+JSON.stringify(handler)+');');
-    } finally {
-        if (oldId)
-            elem.id = oldId
-        else
-            elem.removeAttribute("id");
-    }                    
-}
-
-// Override onclick handlers for all userInfo links in the current document
-function overrideUserInfoLinks() {
-    if (!scpperSettings.addAuthorPage)
-        return;
-    var links = document.querySelectorAll("span.printuser a");
-    for (var i=0; i<links.length; i++) {
-        var onclickText = links[i].getAttribute("onclick");
-        var href = links[i].getAttribute("href");
-        var userInfoRegEx = /WIKIDOT\.page\.listeners\.userInfo\(\d+\);/;
-        var userNameRegEx = /https?:\/\/www\.wikidot\.com\/user:info\/[\w-]+$/i;
-        var userInfoCall = userInfoRegEx.exec(onclickText);
-        if (userInfoCall && userNameRegEx.test(href)) {
-            var userId = /\d+/.exec(userInfoCall[0]);
-            var userName = /[\w-]+$/.exec(href);
-            if (userId && userName) {
-                onclickText = onclickText.replace(userInfoRegEx, "scpperUserInfoDialog("+userId[0]+",\""+userName[0]+"\");");
-                overrideElementHandler(links[i], "user_id_"+userId+"_"+i, "onclick", onclickText);
-            }
-        }
-    }
 }
 
 function makeUserLink(user) {
@@ -199,16 +153,24 @@ function retrievePageInfo() {
     var pageIdRegex = /WIKIREQUEST\.info\.pageId = \d+;/;
     var temp = pageIdRegex.exec(document.head.innerHTML);
     if (!temp)
-        return;    
+        return;
     var pageId = /\d+/.exec(temp[0])[0];
     if (!pageId)
         return;
     var url = "https://scpper.com/extension-page-info?pageId=" + encodeURIComponent(pageId);
     makeXMLHttpRequest(null, url, function(sender, response, success) {
-        if (!scpWebsite || !success) 
+        if (!scpWebsite || !success)
             return;
         var result = JSON.parse(response);
         var info = document.querySelector("div#page-info");
+        if (!info) {
+            var infoParent = document.querySelector("div#page-options-container");
+            if (infoParent) {
+                info = document.createElement("div");
+                info.id = "page-info";
+                infoParent.insertBefore(info, infoParent.firstChild);
+            }
+        }
         if (!result || !info || result.status != 'ok')
             return;
         result = result.data;
@@ -221,13 +183,13 @@ function retrievePageInfo() {
         for (var i=0; i<result.authors.length; i++) {
             var userlink = makeUserLink(result.authors[i]);
             switch (result.authors[i].role) {
-                case 'Author': 
+                case 'Author':
                     authors.push(userlink);
                     break;
-                case 'Rewrite author': 
+                case 'Rewrite author':
                     rewriters.push(userlink);
                     break;
-                case 'Translator': 
+                case 'Translator':
                     translators.push(userlink);
                     break;
             }
@@ -244,10 +206,10 @@ function retrievePageInfo() {
                 authorText = original+" by "+authors.join(", ")+". ";
             else
                 authorText = original+".";
-            if (translators.length>0) 
+            if (translators.length>0)
                 translatorText = "Translated by "+translators.join(", ")+". ";
         }
-        if (rewriters.length>0) 
+        if (rewriters.length>0)
             rewriterText = "Rewritten by "+rewriters.join(", ")+". ";
         var postingDate = new Date(Number(result.date)*1000);
         var options = { day: 'numeric', month: 'short', year: 'numeric'};
@@ -255,42 +217,4 @@ function retrievePageInfo() {
         newInfo.innerHTML = authorText+rewriterText+translatorText+createdText;
         info.insertBefore(newInfo, info.firstChild);
     });
-}
-
-// Override history module update list button handler
-function overrideHistoryModuleUpdateListButton() {
-    var buttons = document.querySelectorAll("#action-area #history-form-1 div.buttons input[type=button]");
-    for (var i=0; i<buttons.length; i++)
-        if ("WIKIDOT.modules.PageHistoryModule.listeners.updateList(event)" == buttons[i].getAttribute("onclick")) {
-            overrideElementHandler(buttons[i], "scpperHistoryModuleUpdateList"+i, "onclick", "scpperHistoryModuleUpdateListButtonClick();");
-            break;
-        }
-}
-
-// Override history module update revision list page button handler
-function overrideHistoryModuleUpdateRevisionListPageButtons() {
-    var pages = document.querySelectorAll("#revision-list .pager span.target a");    
-    for (var i=0; i<pages.length; i++) {
-        var onclickText = pages[i].getAttribute("onclick");
-        if (/updatePagedList\(\d+\)/.test(onclickText)) {
-            var pageNumber = /\(\d+\)/.exec(onclickText);
-            if (pageNumber)
-                overrideElementHandler(pages[i], "scpperHistoryModuleUpdatePagedList"+i, "onclick", "scpperHistoryModuleUpdatePagedList"+pageNumber[0]+";");
-        }
-    }
-}
-
-// Override button showing who voted on the page
-function overrideShowVotersButton() {
-    var buttons = document.querySelectorAll("#action-area a");
-    for (var i=buttons.length-1; i>=0; i--) {
-        var onclickText = buttons[i].getAttribute("onclick");
-        if (/WIKIDOT\.modules\.PageRateModule\.listeners\.showWho\(.*\)/.test(onclickText)) {
-            var args = /\(.*\)/.exec(onclickText);
-            if (args) {
-                overrideElementHandler(buttons[i], "scpperShowVotersButtonClick"+i, "onclick", "scpperShowVotersButtonClick"+args[0]+";");
-                break;
-            }
-        }
-    }
 }

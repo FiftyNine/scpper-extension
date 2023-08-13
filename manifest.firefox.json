@@ -1,0 +1,104 @@
+{
+  "manifest_version": 3,
+  "name": "SCPper",
+  "version": "0.3.2.21",
+  "description": "__MSG_MANIFEST_DESCRIPTION__",
+  "icons": {
+    "128": "scp-logo-128.png",
+    "48": "scp-logo-48.png",
+    "16": "scp-logo-16.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "cpebggobaenfndpoddkdindknnpbjdfc@fiftynine.scp",
+      "strict_min_version": "42.0"
+    }
+  },
+  "author": "Alexander \"FiftyNine\" Krivopalov",
+  "default_locale": "en",
+  "background": {
+    "scripts": [ "service_worker.js"]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.reddit.com/r/SCP/*",
+        "*://www.scpwiki.com/*",
+        "*://www.scp-wiki.net/*",
+        "*://scp-wiki.wikidot.com/*",
+        "*://ko.scp-wiki.net/*",
+        "*://scpko.wikidot.com/*",
+        "*://scp-wiki-cn.wikidot.com/*",
+        "*://fondationscp.wikidot.com/*",
+        "*://scp-wiki.net.pl/*",
+        "*://scp-pl.wikidot.com/*",
+        "*://lafundacionscp.wikidot.com/*",
+        "*://scp-es.com/*",
+        "*://scp-th.wikidot.com/*",
+        "*://ja.scp-wiki.net/*",
+        "*://scp-jp.wikidot.com/*",
+        "*://scp-wiki-de.wikidot.com/*",
+        "*://fondazionescp.wikidot.com/*",
+        "*://scp-ukrainian.wikidot.com/*",
+        "*://scp-pt-br.wikidot.com/*",
+        "*://scp-cs.wikidot.com/*",
+        "*://scp-zh-tr.wikidot.com/*"
+      ],
+      "js": [
+        "constants.js",
+        "scpUtils.js",
+        "linkEnhancer.js",
+        "wikiUtils.js",
+        "wikiPage.js",
+        "wikiForum.js",
+        "wikiMain.js",
+        "scpMain.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "constants.js",
+        "scpEventOverrides.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "content_security_policy": {},
+  "host_permissions": [
+    "*://www.scpper.com/*",
+    "*://scpper.com/*",
+    "*://www.scpwiki.com/*",
+    "*://www.scp-wiki.net/*",
+    "*://scp-wiki.wikidot.com/*",
+    "*://scpwiki.com/*",
+    "*://ko.scp-wiki.net/*",
+    "*://scpko.wikidot.com/*",
+    "*://scp-wiki-cn.wikidot.com/*",
+    "*://fondationscp.wikidot.com/*",
+    "*://scp-wiki.net.pl/*",
+    "*://scp-pl.wikidot.com/*",
+    "*://lafundacionscp.wikidot.com/*",
+    "*://scp-es.com/*",
+    "*://scp-th.wikidot.com/*",
+    "*://ja.scp-wiki.net/*",
+    "*://scp-jp.wikidot.com/*",
+    "*://scp-wiki-de.wikidot.com/*",
+    "*://fondazionescp.wikidot.com/*",
+    "*://scp-ukrainian.wikidot.com/*",
+    "*://scp-pt-br.wikidot.com/*",
+    "*://scp-cs.wikidot.com/*",
+    "*://scp-zh-tr.wikidot.com/*"
+  ]
+}

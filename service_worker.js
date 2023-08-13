@@ -1,10 +1,23 @@
+// Default extensions settings used on first launch or after updated to a newer version
+// Have to copy it here from constants.js because service worker have to be a single file
+// and it cannot import other scripts unless its declared as type: module which is a whole other problem
+var scpperDefaultSettings = {
+    useLinkifier: true,
+    linkifierTemplate: "smart",
+    addAuthorPage: true,
+    addArticleName: true,
+    addPageInfo: true,
+    overrideForum: true,
+    linkTooltips: true
+};
+
+
 function makeXMLHttpRequest(sender, url, callback) {
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-    request.onload = function() {
-        callback({sender: sender, text: request.responseText, success: request.status==200});
-    };
-    request.send();
+    var request = new Request(url);
+    // I truly hate promises
+    fetch(request)
+        .then((response) => {
+            response.text().then((text) => callback({sender: sender, text: text, success: response.status==200}))});    
 }
 
 // Setup default settings when first installed

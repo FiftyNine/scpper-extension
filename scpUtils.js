@@ -3,7 +3,7 @@ var DEBUG = false;
 // Format of last refresh time in storage of SCP names for a site: "SITENAMELastRefreshTime"
 // Format of SCP name in storage: "SITENAMESCP###NAME"
 
-// Current scp website    
+// Current scp website
 var scpWebsite;
 // Settings
 var scpperSettings;
@@ -24,8 +24,8 @@ function makeXhrChrome(sender, url, callback) {
 function makeXhrFirefox(sender, url, callback) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
-            if (request.readyState == 4)
-                callback(sender, request.responseText, request.status==200); 
+        if (request.readyState == 4)
+            callback(sender, request.responseText, request.status==200);
     }
     request.open("GET", url, true);
     request.send();
@@ -54,8 +54,8 @@ function initScpperSettings() {
 function injectExtensionScript(fileName, onLoadScript) {
     var myScript = document.createElement("script");
     myScript.type = "text/javascript";
-    myScript.src = chrome.extension.getURL(fileName);
-    if (onLoadScript)    
+    myScript.src = chrome.runtime.getURL(fileName);
+    if (onLoadScript)
         myScript.setAttribute("onload", onLoadScript)
     else
         myScript.onload = function () {myScript.parentNode.removeChild(myScript)};
@@ -106,7 +106,7 @@ function extractScpNames(doc, template) {
     }
     for (var i=0; i<doc.links.length; i++) {
         var link = doc.links[i];
-        var href = link.attributes["href"].value;        
+        var href = link.attributes["href"].value;
         if ((link.nodeName.toUpperCase() == 'A')&&(new RegExp(template.urlTemplate.replace("@", template.numberRegEx)+"$", "i").test(href))) {
             var scpNumber = new RegExp(template.numberRegEx+"$", "i").exec(href);
             var text = "";
@@ -129,7 +129,7 @@ function extractScpNames(doc, template) {
 var cacheInProgress = [];
 var waitingCallbacks = [];
 
-// Fill SCP name cache 
+// Fill SCP name cache
 function fillScpNameCache(website, callback) {
     var index = cacheInProgress.indexOf(website.name)
     if (index >= 0) {
@@ -137,13 +137,13 @@ function fillScpNameCache(website, callback) {
         return;
     }
     index = cacheInProgress.push(website.name)-1;
-    waitingCallbacks.push({website: website.name, callbacks: [callback]});    
+    waitingCallbacks.push({website: website.name, callbacks: [callback]});
     var pages = [];
     var templates = [];
     for (i=0; i<website.articleTemplates.length; i++)
         for (j=0; j<website.articleTemplates[i].listPages.length; j++)
-            if (pages.indexOf(website.articleTemplates[i].listPages[j] < 0)) {            
-                pages.push(website.articleTemplates[i].listPages[j]);            
+            if (pages.indexOf(website.articleTemplates[i].listPages[j] < 0)) {
+                pages.push(website.articleTemplates[i].listPages[j]);
                 templates.push(website.articleTemplates[i]);
             }
     var pagesLeft = pages.length;
@@ -176,13 +176,13 @@ function fillScpNameCache(website, callback) {
                 }
             });
         });
-    }  
+    }
 }
 
 
 // Check if local cache for article names on the specified site is filled and up-to-date. Refresh if necessary
 function validateScpNameCache(website, callback) {
-    var refreshName = website.name+"LastRefreshTime";    
+    var refreshName = website.name+"LastRefreshTime";
     chrome.storage.local.get(refreshName, function(item) {
         var needRefresh = (item[refreshName] == null);
         if (!needRefresh) {

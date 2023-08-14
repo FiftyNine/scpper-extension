@@ -1,7 +1,7 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "SCPper",
-  "version": "0.3.2.21",
+  "version": "0.3.2.23",
   "description": "__MSG_MANIFEST_DESCRIPTION__",
   "icons": {
     "128": "scp-logo-128.png",
@@ -17,88 +17,81 @@
   "author": "Alexander \"FiftyNine\" Krivopalov",
   "default_locale": "en",
   "background": {
-    "scripts": [ "service_worker.js"]
+    "scripts": [ "service_worker.js"],
+    "persistent": false
   },
   "options_ui": {
-    "page": "options.html",
-    "browser_style": false
+    "page": "options.html"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://www.reddit.com/r/SCP/*",
-        "*://www.scpwiki.com/*",
-        "*://www.scp-wiki.net/*",
-        "*://scp-wiki.wikidot.com/*",
-        "*://ko.scp-wiki.net/*",
-        "*://scpko.wikidot.com/*",
-        "*://scp-wiki-cn.wikidot.com/*",
-        "*://fondationscp.wikidot.com/*",
-        "*://scp-wiki.net.pl/*",
-        "*://scp-pl.wikidot.com/*",
-        "*://lafundacionscp.wikidot.com/*",
-        "*://scp-es.com/*",
-        "*://scp-th.wikidot.com/*",
-        "*://ja.scp-wiki.net/*",
-        "*://scp-jp.wikidot.com/*",
-        "*://scp-wiki-de.wikidot.com/*",
-        "*://fondazionescp.wikidot.com/*",
-        "*://scp-ukrainian.wikidot.com/*",
-        "*://scp-pt-br.wikidot.com/*",
-        "*://scp-cs.wikidot.com/*",
-        "*://scp-zh-tr.wikidot.com/*"
-      ],
-      "js": [
-        "constants.js",
-        "scpUtils.js",
-        "linkEnhancer.js",
-        "wikiUtils.js",
-        "wikiPage.js",
-        "wikiForum.js",
-        "wikiMain.js",
-        "scpMain.js"
-      ],
-      "run_at": "document_start"
-    }
-  ],
+  "content_scripts": [{
+        "matches": [
+            "*://www.reddit.com/r/SCP/*",
+            "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
+            "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
+            "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
+            "*://scp-wiki-cn.wikidot.com/*",
+            "*://fondationscp.wikidot.com/*",
+            "*://scp-wiki.net.pl/*", "*://scp-pl.wikidot.com/*",
+            "*://lafundacionscp.wikidot.com/*", "*://scp-es.com/*",
+            "*://scp-th.wikidot.com/*",
+            "*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*",
+            "*://scp-wiki-de.wikidot.com/*",
+            "*://fondazionescp.wikidot.com/*",
+            "*://scp-ukrainian.wikidot.com/*",
+            "*://scp-pt-br.wikidot.com/*",
+            "*://scp-cs.wikidot.com/*",
+            "*://scp-zh-tr.wikidot.com/*"
+        ],
+        "js": [
+            "constants.js",
+            "scpUtils.js", "linkEnhancer.js",
+            "wikiUtils.js", "wikiPage.js",
+            "wikiForum.js", "wikiMain.js",
+            "scpMain.js"
+        ],
+        "run_at": "document_start"
+  }],
+  "externally_connectable": {
+        "matches": [
+            "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*",
+            "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
+            "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
+            "*://scp-wiki-cn.wikidot.com/*",
+            "*://fondationscp.wikidot.com/*",
+            "*://scp-wiki.net.pl/*", "*://scp-pl.wikidot.com/*",
+            "*://lafundacionscp.wikidot.com/*", "*://scp-es.com/*",
+            "*://scp-th.wikidot.com/*",
+            "*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*",
+            "*://scp-wiki-de.wikidot.com/*",
+            "*://fondazionescp.wikidot.com/*",
+            "*://scp-ukrainian.wikidot.com/*",
+            "*://scp-pt-br.wikidot.com/*",
+            "*://scp-cs.wikidot.com/*",
+            "*://scp-zh-tr.wikidot.com/*"
+        ]
+  },
   "web_accessible_resources": [
-    {
-      "resources": [
         "constants.js",
-        "scpEventOverrides.js"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
+    "scpEventOverrides.js"
   ],
   "permissions": [
-    "storage"
-  ],
-  "content_security_policy": {},
-  "host_permissions": [
-    "*://www.scpper.com/*",
-    "*://scpper.com/*",
-    "*://www.scpwiki.com/*",
-    "*://www.scp-wiki.net/*",
-    "*://scp-wiki.wikidot.com/*",
-    "*://scpwiki.com/*",
-    "*://ko.scp-wiki.net/*",
-    "*://scpko.wikidot.com/*",
+    "storage",
+    "*://www.scpper.com/*", "*://scpper.com/*",
+    "*://www.scpwiki.com/*", "*://www.scp-wiki.net/*", "*://scp-wiki.wikidot.com/*", "*://scpwiki.com/*",
+    "*://scpfoundation.ru/*", "*://scp-ru.wikidot.com/*", "*://scpfoundation.net/*",
+    "*://ko.scp-wiki.net/*", "*://scpko.wikidot.com/*",
     "*://scp-wiki-cn.wikidot.com/*",
     "*://fondationscp.wikidot.com/*",
-    "*://scp-wiki.net.pl/*",
-    "*://scp-pl.wikidot.com/*",
-    "*://lafundacionscp.wikidot.com/*",
-    "*://scp-es.com/*",
+    "*://scp-wiki.net.pl/*", "*://scp-pl.wikidot.com/*",
+    "*://lafundacionscp.wikidot.com/*", "*://scp-es.com/*",
     "*://scp-th.wikidot.com/*",
-    "*://ja.scp-wiki.net/*",
-    "*://scp-jp.wikidot.com/*",
+    "*://ja.scp-wiki.net/*", "*://scp-jp.wikidot.com/*",
     "*://scp-wiki-de.wikidot.com/*",
     "*://fondazionescp.wikidot.com/*",
     "*://scp-ukrainian.wikidot.com/*",
     "*://scp-pt-br.wikidot.com/*",
     "*://scp-cs.wikidot.com/*",
     "*://scp-zh-tr.wikidot.com/*"
-  ]
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlqyT7a4GyVofLYIrkTp/v61fhDAaVsPgWY4Go/TNBAfvuOOyrNmblHBKxCiahhwr20Gjb6Py9AFOKIHI9xhUnDzNzFXtXj4yV4EVn7A/6ojxpix5KkSu2+7w0smgv2RlQdcZ2TAEfWOPJhctLkIwp2DrwYeVI5HdeJ/bE1WSsGJEiXKmdxFQGJYc3n5uvZoRSz65UV3AuZmrgr7cBk+AKnakpdsd0r375CbLPu+bBEGfu2u2hatReUraPot+3ocdQox0dJB6dQ7TyjckUGFQKrr8MAmq6TtK1ihvHwgTB72Jk+MxkmlDdye77U8mJcXS6MZb+WEAgvmdCmDEisAXTQIDAQAB"
 }
